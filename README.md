@@ -128,3 +128,28 @@ Notebook:
 ---
 
 # Repository Structure
+clustering/
+
+├── kmeans/
+│ ├── README.md
+│ └── kmeans.ipynb
+
+├── gmm-em/
+│ ├── README.md
+│ └── gmm_em.ipynb
+
+├── dbscan-hdbscan/
+│ ├── README.md
+│ └── dbscan_hdbscan.ipynb
+
+└── hierarchical-clustering/
+├── README.md
+└── hierarchical_clustering.ipynb
+---
+
+# References
+
+- Introduction to Statistical Learning (ISLR)
+- Scikit-learn Documentation
+- Hands-On Machine Learning with Scikit-Learn and TensorFlow
+- Kaggle Machine Learning Resources
