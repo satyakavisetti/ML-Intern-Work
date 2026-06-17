@@ -428,4 +428,4 @@ A: Common issues:
 
 ---
 
-**Last Updated**: June 2026 | **For**: Gradients ML Internship Program | **Topic**: Gaussian Mixture Models with EM
+
