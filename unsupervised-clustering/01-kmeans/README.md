@@ -369,4 +369,3 @@ In practice, K-Means is very fast because i is small and the computation is simp
 
 ---
 
-**Last Updated**: June 2026 | **For**: Gradients ML Internship Program | **Topic**: K-Means Clustering
