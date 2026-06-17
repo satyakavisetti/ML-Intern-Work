@@ -456,4 +456,3 @@ Combine them: Run K-Means for speed; visualize with hierarchical clustering for 
 
 ---
 
-**Last Updated**: June 2026 | **For**: Gradients ML Internship Program | **Topic**: Hierarchical Clustering
