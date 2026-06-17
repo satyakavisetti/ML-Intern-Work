@@ -21,11 +21,6 @@ Traditional clustering algorithms force a hard decision. GMM acknowledges uncert
 
 This probabilistic viewpoint is one of the biggest reasons GMM remains important in machine learning, statistics, signal processing, and scientific research.
 
-### Historical Background
-
-Gaussian Mixture Models originate from classical statistics and probability theory. The idea of representing complex distributions as weighted combinations of simpler distributions has been used for decades.
-
-The combination of GMM and the EM algorithm became especially influential after the publication of the EM framework by Dempster, Laird, and Rubin in 1977. Today, GMM remains one of the most widely taught probabilistic clustering techniques.
 ---
 
 ## 2. WHAT IS GMM-EM (DETAILED)?
