@@ -17,6 +17,21 @@ DBSCAN's core insight: Points are similar if they're close to each other and sur
 - **MinPts**: Minimum neighbors required for a point to be core (dense).
 
 A point is a **core point** if it has ≥ MinPts neighbors within ε. Core points and their neighbors form clusters through density-connectedness. Isolated points become **outliers/noise**.
+### Why Density Matters
+
+Traditional clustering algorithms such as K-Means assume that clusters are roughly spherical and can be represented using a centroid. However, real-world datasets often violate this assumption. Customer behavior, geographical patterns, biological structures, and social networks frequently produce irregular cluster shapes.
+
+Density-based clustering approaches the problem differently. Instead of asking "Which centroid is closest?", it asks "Which points are surrounded by many nearby neighbors?". This perspective allows the algorithm to discover natural groups regardless of shape.
+
+### Historical Background
+
+DBSCAN was introduced in 1996 by Ester, Kriegel, Sander, and Xu. The motivation was to develop an algorithm capable of discovering clusters in large spatial databases while simultaneously handling noise points.
+
+Before DBSCAN, most clustering methods required users to specify the number of clusters beforehand. DBSCAN removed this requirement and introduced explicit noise detection, making it one of the most influential clustering algorithms ever developed.
+
+### Real-World Analogy
+
+Imagine standing in a crowded shopping mall. People naturally form dense groups around food courts, shops, and entertainment areas. A few individuals may be walking alone through corridors. DBSCAN identifies the crowded regions as clusters and the isolated individuals as noise points.
 
 ---
 
@@ -29,6 +44,19 @@ A point is a **core point** if it has ≥ MinPts neighbors within ε. Core point
 **Border Point**: Not core, but within ε of a core point. Border points belong to that core's cluster.
 
 **Outlier/Noise**: Neither core nor border; isolated in sparse region. DBSCAN explicitly labels noise rather than forcing it into clusters.
+### Why Core Points Are Important
+
+Core points act as the foundation of every cluster. Without core points, clusters cannot grow because density connectivity depends on chains of core points.
+
+A useful analogy is a city. Large cities represent core points because many roads connect through them. Small towns near cities represent border points. Remote villages with no nearby connections behave like noise points.
+
+### Difference Between Border and Noise Points
+
+Border points belong to clusters because they lie close to dense regions even though they do not satisfy the density requirement themselves.
+
+Noise points, on the other hand, remain isolated and do not belong to any cluster.
+
+Understanding this distinction is important because many real-world datasets contain observations that naturally fall between highly populated regions and complete isolation.
 
 **Density-Reachable**: Point q is density-reachable from p if there's a chain of core points p→...→q where each step is within ε.
 
@@ -80,7 +108,34 @@ Clusters are maximal sets of density-connected points:
 **Stability(C)** = Σₚ∈C max(0, λₚ - λ_parent)
 
 Where λₚ is the inverse of ε at which point p joins a cluster. Higher stability indicates a more persistent, robust cluster.
+### Understanding ε-Neighborhood
 
+The ε-neighborhood determines which points are considered local neighbors.
+
+If ε is very small:
+- Few neighbors exist
+- Many points become noise
+- Clusters fragment
+
+If ε is very large:
+- Almost all points become neighbors
+- Clusters merge together
+- Important structures disappear
+
+Therefore ε controls the granularity of density estimation.
+
+### Understanding MinPts
+
+MinPts defines the minimum amount of evidence required before declaring a region dense.
+
+Small MinPts:
+- Sensitive to noise
+- Creates many small clusters
+
+Large MinPts:
+- Requires stronger density
+- More robust clusters
+- Risk of missing meaningful structures
 ---
 
 ## 4. HOW IT WORKS – STEP BY STEP
@@ -146,7 +201,15 @@ Points: A(0,0), B(1,0), C(2,0), D(0,1), E(1,1),
 2. **Dendrogram**: Order MST edges by distance; merge clusters as distance increases
 3. **Stability Extraction**: Walk down dendrogram; at each level, compute cluster stability
 4. **Select Best**: Extract clusters with highest stability (stable across range of densities)
+### Visual Interpretation of Cluster Expansion
 
+Consider dropping ink onto paper.
+
+The ink spreads outward from dense regions and absorbs nearby points.
+
+Whenever another dense region is encountered, expansion continues.
+
+Sparse gaps prevent further expansion and naturally separate clusters.
 ---
 
 ## 5. KEY ASSUMPTIONS
