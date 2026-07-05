@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hierarchical Clustering | Unsupervised Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-brand">Gradientts Learning</div>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="../k-means/index.html">K-Means</a>
+      <a href="../gmm-em/index.html">GMM + EM</a>
+      <a href="../dbscan-hdbscan/index.html">DBSCAN + HDBSCAN</a>
+      <a href="../hierarchical-clustering/index.html" class="active">Hierarchical</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero hero-hierarchical">
+      <div class="hero-copy">
+        <span class="eyebrow">Unsupervised Learning</span>
+        <h1>Hierarchical Clustering</h1>
+        <p>Learn how hierarchy reveals data groups through merging or splitting decisions.</p>
+        <div class="hero-actions">
+          <a href="#overview" class="btn btn-primary">Explore Hierarchy</a>
+          <a href="#example" class="btn btn-secondary">View Example</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <div class="node-structure"></div>
+          <div class="link-lines"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section toc" id="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#overview">Introduction</a></li>
+        <li><a href="#analogy">Real World Analogy</a></li>
+        <li><a href="#problem">Problem it Solves</a></li>
+        <li><a href="#formula">Mathematical Formula</a></li>
+        <li><a href="#workflow">Algorithm Workflow</a></li>
+        <li><a href="#diagram">Flow Diagram</a></li>
+        <li><a href="#example">Working Example</a></li>
+        <li><a href="#advantages">Advantages</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+        <li><a href="#applications">Applications</a></li>
+        <li><a href="#visualizations">Visualizations</a></li>
+        <li><a href="#interview">Interview Questions</a></li>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </section>
+
+    <section class="section content-block" id="overview">
+      <div class="section-header">
+        <h2>Introduction</h2>
+        <p>What hierarchical clustering is and how it builds clusters step by step.</p>
+      </div>
+      <div class="content-grid">
+        <div>
+          <h3>What is it?</h3>
+          <p>Hierarchical clustering creates a tree of clusters by either merging small groups or splitting a large one. It shows how data items relate across levels.</p>
+        </div>
+        <div>
+          <h3>Why is it needed?</h3>
+          <p>It is helpful when we want to see the structure of groups instead of one fixed solution. The tree can reveal natural clusters at different scales.</p>
+        </div>
+      </div>
+      <p class="lead">For students, hierarchical clustering is a strong way to understand how clusters grow or shrink and how the dataset is organized.</p>
+    </section>
+
+    <section class="section content-block" id="analogy">
+      <div class="section-header">
+        <h2>Real World Analogy</h2>
+      </div>
+      <p>Think of organizing a library. Books start in broad categories, such as science or fiction, then move into subcategories. Hierarchical clustering shows the full structure from general to specific.</p>
+    </section>
+
+    <section class="section content-block" id="problem">
+      <div class="section-header">
+        <h2>Problem it Solves</h2>
+      </div>
+      <p>Choosing a fixed number of clusters can hide important relationships. Hierarchical clustering solves this by letting us inspect multiple possible groupings in one model.</p>
+      <ul class="problem-list">
+        <li>Understanding nested cluster structure</li>
+        <li>Finding groupings at different levels of detail</li>
+        <li>Using a visual tree instead of a single flat partition</li>
+      </ul>
+    </section>
+
+    <section class="section content-block" id="formula">
+      <div class="section-header">
+        <h2>Mathematical Formula</h2>
+      </div>
+      <div class="formula-card">
+        <p><strong>Linkage options:</strong> distance between clusters determines how they merge.</p>
+        <p class="formula"><code>d(A,B) = min<sub>a in A, b in B</sub> dist(a,b)  (single linkage)</code></p>
+        <div class="formula-legend">
+          <div><strong>d(A,B)</strong> = distance between two clusters</div>
+          <div><strong>dist(a,b)</strong> = distance between points</div>
+          <div><strong>A, B</strong> = two clusters or groups</div>
+          <div><strong>single linkage</strong> = uses the closest points between clusters</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-block" id="workflow">
+      <div class="section-header">
+        <h2>Algorithm Workflow</h2>
+      </div>
+      <ol class="workflow-list">
+        <li>Start with each point as its own cluster.</li>
+        <li>Measure distances between every pair of clusters.</li>
+        <li>Choose the closest pair and merge them.</li>
+        <li>Update the distances using a linkage rule.</li>
+        <li>Repeat until one cluster remains or until a stopping condition.</li>
+        <li>Cut the tree at the desired level to form the final groups.</li>
+      </ol>
+    </section>
+
+    <section class="section content-block" id="diagram">
+      <div class="section-header">
+        <h2>Flow Diagram</h2>
+      </div>
+      <div class="diagram-wrapper" aria-label="Hierarchical clustering flow diagram">
+        <svg viewBox="0 0 900 320" role="img" aria-labelledby="hierFlowTitle hierFlowDesc">
+          <title id="hierFlowTitle">Hierarchical clustering workflow</title>
+          <desc id="hierFlowDesc">Diagram showing cluster merging, distance updates, and dendrogram creation.</desc>
+          <defs>
+            <marker id="arrow-hier" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#1b3a65" />
+            </marker>
+          </defs>
+          <rect x="30" y="40" width="220" height="80" rx="18" fill="#f8fbff" stroke="#3c89ff" />
+          <text x="140" y="68" text-anchor="middle" font-weight="700">Initialize</text>
+          <text x="140" y="88" text-anchor="middle" font-size="14">each point is a cluster</text>
+          <line x1="250" y1="80" x2="320" y2="80" stroke="#1b3a65" stroke-width="2" marker-end="url(#arrow-hier)" />
+
+          <rect x="320" y="40" width="220" height="80" rx="18" fill="#eff3ff" stroke="#6da5ff" />
+          <text x="430" y="68" text-anchor="middle" font-weight="700">Compute distances</text>
+          <text x="430" y="88" text-anchor="middle" font-size="14">between all clusters</text>
+          <line x1="540" y1="80" x2="610" y2="80" stroke="#1b3a65" stroke-width="2" marker-end="url(#arrow-hier)" />
+
+          <rect x="610" y="40" width="220" height="80" rx="18" fill="#f2f7ff" stroke="#5a96ff" />
+          <text x="720" y="68" text-anchor="middle" font-weight="700">Merge closest pair</text>
+          <text x="720" y="88" text-anchor="middle" font-size="14">update clusters</text>
+          <line x1="710" y1="120" x2="710" y2="180" stroke="#1b3a65" stroke-width="2" marker-end="url(#arrow-hier)" />
+
+          <rect x="610" y="180" width="220" height="80" rx="18" fill="#f6faff" stroke="#82a9ff" />
+          <text x="720" y="210" text-anchor="middle" font-weight="700">Build dendrogram</text>
+          <text x="720" y="230" text-anchor="middle" font-size="14">choose cluster level</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section content-block" id="example">
+      <div class="section-header">
+        <h2>Working Example</h2>
+      </div>
+      <div class="example-grid">
+        <div class="example-card">
+          <h3>Dataset</h3>
+          <p>We have points from a set of handwritten digits. We want to see how the patterns cluster from general groups down to specific handwriting styles.</p>
+        </div>
+        <div class="example-card">
+          <h3>How it works</h3>
+          <ol>
+            <li>Start with each sample as its own cluster.</li>
+            <li>Merge the two closest samples first.</li>
+            <li>Continue merging until the tree is complete.</li>
+            <li>Cut the tree at a desired height to form clusters.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="lead">This example shows hierarchical clustering revealing how small groups combine into larger categories as we move up the tree.</p>
+    </section>
+
+    <section class="section cards-grid" id="advantages">
+      <div class="section-header">
+        <h2>Advantages</h2>
+      </div>
+      <div class="card-list">
+        <article class="feature-card">
+          <h3>Multiple resolutions</h3>
+          <p>You can choose cluster detail after building the hierarchy.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Easy visualization</h3>
+          <p>The tree structure reveals relationships clearly.</p>
+        </article>
+        <article class="feature-card">
+          <h3>No k required</h3>
+          <p>It does not require a fixed number of clusters at the start.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cards-grid" id="limitations">
+      <div class="section-header">
+        <h2>Limitations</h2>
+      </div>
+      <div class="card-list">
+        <article class="feature-card feature-card-soft">
+          <h3>Slow for large datasets</h3>
+          <p>Computing all pairwise distances can be expensive.</p>
+        </article>
+        <article class="feature-card feature-card-soft">
+          <h3>Sensitive to noise</h3>
+          <p>Outliers can affect the merge decisions and structure.</p>
+        </article>
+        <article class="feature-card feature-card-soft">
+          <h3>Choice of linkage matters</h3>
+          <p>Different linkage rules produce very different trees.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section content-block" id="applications">
+      <div class="section-header">
+        <h2>Applications</h2>
+      </div>
+      <div class="apps-grid">
+        <article>
+          <h3>Healthcare</h3>
+          <p>Grouping patients by symptom similarity across many levels.</p>
+        </article>
+        <article>
+          <h3>Finance</h3>
+          <p>Discovering nested customer segments for risk and product targeting.</p>
+        </article>
+        <article>
+          <h3>Marketing</h3>
+          <p>Uncovering customer groups from broad audiences to focused niches.</p>
+        </article>
+        <article>
+          <h3>Recommendation</h3>
+          <p>Finding hierarchical interests that match users at different levels.</p>
+        </article>
+        <article>
+          <h3>Image Processing</h3>
+          <p>Building a hierarchy of image regions for segmentation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section content-block" id="visualizations">
+      <div class="section-header">
+        <h2>Visualizations</h2>
+      </div>
+      <div class="visual-grid">
+        <div class="visual-card">
+          <div class="visual-dendrogram"></div>
+          <p>Visualizing cluster merges and the tree of decisions.</p>
+        </div>
+        <div class="visual-card">
+          <div class="visual-scale"></div>
+          <p>Showing different cluster levels from detailed to broad.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-block" id="interview">
+      <div class="section-header">
+        <h2>Interview Questions</h2>
+      </div>
+      <div class="accordion" id="faq">
+        <button class="accordion-item" aria-expanded="false">What are the two types of hierarchical clustering?</button>
+        <div class="panel"><p>Divisive starts with one cluster and splits, while agglomerative starts with single points and merges.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">What is linkage?</button>
+        <div class="panel"><p>Linkage is the rule used to compute distance between clusters when merging them.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">How is a dendrogram used?</button>
+        <div class="panel"><p>A dendrogram shows the merge history and helps choose the cluster cut level.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">What linkage is best for tight groups?</button>
+        <div class="panel"><p>Complete linkage tends to create tight and compact clusters.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">Why is hierarchical clustering useful for exploration?</button>
+        <div class="panel"><p>It shows group structure at multiple scales instead of a single flat solution.</p></div>
+      </div>
+    </section>
+
+    <section class="section content-block" id="summary">
+      <div class="section-header">
+        <h2>Summary</h2>
+      </div>
+      <ul class="summary-list">
+        <li>Hierarchical clustering reveals how groups form from individual points or larger clusters.</li>
+        <li>It is useful when we want a tree of possible clusterings rather than one fixed answer.</li>
+        <li>Distance and linkage rules shape the tree structure.</li>
+        <li>The dendrogram helps choose the right number of clusters.</li>
+      </ul>
+    </section>
+
+    <section class="section content-block" id="references">
+      <div class="section-header">
+        <h2>References</h2>
+      </div>
+      <ul class="reference-list">
+        <li>J. A. Hartigan, "Clustering Algorithms", 1975.</li>
+        <li>R. O. Duda, P. E. Hart, D. G. Stork, "Pattern Classification", 2001.</li>
+        <li>Scikit-learn documentation for hierarchical clustering.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <p><strong>Gradientts Learning</strong></p>
+        <p>Premium practical guides for unsupervised clustering.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../k-means/index.html">K-Means</a>
+        <a href="../gmm-em/index.html">GMM + EM</a>
+        <a href="../dbscan-hdbscan/index.html">DBSCAN + HDBSCAN</a>
+        <a href="../hierarchical-clustering/index.html">Hierarchical</a>
+      </div>
+    </div>
+  </footer>
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+  <script src="../script.js"></script>
+</body>
+</html>

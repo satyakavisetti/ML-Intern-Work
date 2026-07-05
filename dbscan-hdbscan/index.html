@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DBSCAN + HDBSCAN | Unsupervised Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header class="navbar">
+    <div class="nav-brand">Gradientts Learning</div>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="../k-means/index.html">K-Means</a>
+      <a href="../gmm-em/index.html">GMM + EM</a>
+      <a href="../dbscan-hdbscan/index.html" class="active">DBSCAN + HDBSCAN</a>
+      <a href="../hierarchical-clustering/index.html">Hierarchical</a>
+    </nav>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero hero-dbscan">
+      <div class="hero-copy">
+        <span class="eyebrow">Unsupervised Learning</span>
+        <h1>DBSCAN and HDBSCAN</h1>
+        <p>Discover density-based clustering methods that detect irregular groups and separate noise.</p>
+        <div class="hero-actions">
+          <a href="#overview" class="btn btn-primary">Discover Density Clustering</a>
+          <a href="#example" class="btn btn-secondary">See Example</a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-card">
+          <div class="grid-overlay"></div>
+          <div class="cluster-bubbles"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section toc" id="toc">
+      <h2>Table of Contents</h2>
+      <ul>
+        <li><a href="#overview">Introduction</a></li>
+        <li><a href="#analogy">Real World Analogy</a></li>
+        <li><a href="#problem">Problem it Solves</a></li>
+        <li><a href="#formula">Mathematical Formula</a></li>
+        <li><a href="#workflow">Algorithm Workflow</a></li>
+        <li><a href="#diagram">Flow Diagram</a></li>
+        <li><a href="#example">Working Example</a></li>
+        <li><a href="#advantages">Advantages</a></li>
+        <li><a href="#limitations">Limitations</a></li>
+        <li><a href="#applications">Applications</a></li>
+        <li><a href="#visualizations">Visualizations</a></li>
+        <li><a href="#interview">Interview Questions</a></li>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#references">References</a></li>
+      </ul>
+    </section>
+
+    <section class="section content-block" id="overview">
+      <div class="section-header">
+        <h2>Introduction</h2>
+        <p>How density clustering works and why it is a strong choice for messy data.</p>
+      </div>
+      <div class="content-grid">
+        <div>
+          <h3>What is it?</h3>
+          <p>DBSCAN groups points that are closely packed and marks isolated points as noise. HDBSCAN improves on this by studying the density structure at many scales.</p>
+        </div>
+        <div>
+          <h3>Why is it needed?</h3>
+          <p>These methods find clusters of varying shapes and sizes without needing a fixed number of groups.</p>
+        </div>
+      </div>
+      <p class="lead">For beginners, density clustering is useful when clusters are not round and when there is background noise in the data.</p>
+    </section>
+
+    <section class="section content-block" id="analogy">
+      <div class="section-header">
+        <h2>Real World Analogy</h2>
+      </div>
+      <p>Imagine a busy park where people form groups in small clearings. DBSCAN sees the groups and also notices the lone walkers who are not part of any group.</p>
+    </section>
+
+    <section class="section content-block" id="problem">
+      <div class="section-header">
+        <h2>Problem it Solves</h2>
+      </div>
+      <p>Regular clustering can fail when groups are irregular or when noise is present. Density clustering solves this by focusing on regions of high point concentration.</p>
+      <ul class="problem-list">
+        <li>Finding non-spherical clusters</li>
+        <li>Separating noise from real groups</li>
+        <li>Handling datasets with varying local densities</li>
+      </ul>
+    </section>
+
+    <section class="section content-block" id="formula">
+      <div class="section-header">
+        <h2>Mathematical Formula</h2>
+      </div>
+      <div class="formula-card">
+        <p><strong>Density definitions:</strong> DBSCAN uses distance and point count to classify points.</p>
+        <p class="formula"><code>ρ(p) = |N<sub>ε</sub>(p)|,  where  N<sub>ε</sub>(p) = {q | dist(p,q) ≤ ε}</code></p>
+        <div class="formula-legend">
+          <div><strong>ε</strong> = radius for neighborhood search</div>
+          <div><strong>ρ(p)</strong> = number of points near p</div>
+          <div><strong>minPts</strong> = minimum points required to be dense</div>
+          <div><strong>core point</strong> = point with ρ(p) ≥ minPts</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-block" id="workflow">
+      <div class="section-header">
+        <h2>Algorithm Workflow</h2>
+      </div>
+      <ol class="workflow-list">
+        <li>Set the neighborhood radius ε and minPts threshold.</li>
+        <li>For every point, count how many neighbors fall inside ε.</li>
+        <li>Label points as core points, border points, or noise.</li>
+        <li>Expand clusters from core points by adding reachable neighbors.</li>
+        <li>Repeat until every point is processed.</li>
+        <li>For HDBSCAN, repeat the process over changing density levels to build stable groups.</li>
+      </ol>
+    </section>
+
+    <section class="section content-block" id="diagram">
+      <div class="section-header">
+        <h2>Flow Diagram</h2>
+      </div>
+      <div class="diagram-wrapper" aria-label="DBSCAN HDBSCAN flow diagram">
+        <svg viewBox="0 0 900 330" role="img" aria-labelledby="dbscanFlowTitle dbscanFlowDesc">
+          <title id="dbscanFlowTitle">Density-based clustering workflow</title>
+          <desc id="dbscanFlowDesc">Diagram showing parameter setup, density checks, cluster expansion, and hierarchical mapping.</desc>
+          <defs>
+            <marker id="arrow-db" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L10,5 L0,10 Z" fill="#0f3068" />
+            </marker>
+          </defs>
+          <rect x="30" y="40" width="220" height="80" rx="20" fill="#f4faff" stroke="#4f7bff" />
+          <text x="140" y="68" text-anchor="middle" font-weight="700">Set parameters</text>
+          <text x="140" y="88" text-anchor="middle" font-size="14">ε and minPts</text>
+          <line x1="250" y1="80" x2="320" y2="80" stroke="#0f3068" stroke-width="2" marker-end="url(#arrow-db)" />
+
+          <rect x="320" y="40" width="220" height="80" rx="20" fill="#f5f6ff" stroke="#6e8dff" />
+          <text x="430" y="68" text-anchor="middle" font-weight="700">Find density</text>
+          <text x="430" y="88" text-anchor="middle" font-size="14">core, border, noise</text>
+          <line x1="540" y1="80" x2="610" y2="80" stroke="#0f3068" stroke-width="2" marker-end="url(#arrow-db)" />
+
+          <rect x="610" y="40" width="220" height="80" rx="20" fill="#eef2ff" stroke="#5a7dff" />
+          <text x="720" y="68" text-anchor="middle" font-weight="700">Expand clusters</text>
+          <text x="720" y="88" text-anchor="middle" font-size="14">connect dense points</text>
+          <line x1="720" y1="120" x2="720" y2="180" stroke="#0f3068" stroke-width="2" marker-end="url(#arrow-db)" />
+
+          <rect x="610" y="180" width="220" height="80" rx="20" fill="#f3f7ff" stroke="#7f9cff" />
+          <text x="720" y="210" text-anchor="middle" font-weight="700">Hierarchical view</text>
+          <text x="720" y="230" text-anchor="middle" font-size="14">HDBSCAN stability</text>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section content-block" id="example">
+      <div class="section-header">
+        <h2>Working Example</h2>
+      </div>
+      <div class="example-grid">
+        <div class="example-card">
+          <h3>Dataset</h3>
+          <p>Imagine location points from different groups of people in a park. Some groups are tight, while others spread out or stand alone.</p>
+        </div>
+        <div class="example-card">
+          <h3>How it works</h3>
+          <ol>
+            <li>Choose ε = 0.7 and minPts = 4.</li>
+            <li>Mark dense points as core points.</li>
+            <li>Grow clusters from core points and attach reachable border points.</li>
+            <li>Label isolated samples as noise.</li>
+          </ol>
+        </div>
+      </div>
+      <p class="lead">For this example, DBSCAN detects groups by proximity and avoids forcing solitary points into an unrelated cluster.</p>
+    </section>
+
+    <section class="section cards-grid" id="advantages">
+      <div class="section-header">
+        <h2>Advantages</h2>
+      </div>
+      <div class="card-list">
+        <article class="feature-card">
+          <h3>Detects noise</h3>
+          <p>DBSCAN can mark outliers that do not belong to any cluster.</p>
+        </article>
+        <article class="feature-card">
+          <h3>Shape flexibility</h3>
+          <p>Clusters can have curved, elongated, or irregular shapes.</p>
+        </article>
+        <article class="feature-card">
+          <h3>No need for k</h3>
+          <p>It does not require knowing the number of clusters in advance.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section cards-grid" id="limitations">
+      <div class="section-header">
+        <h2>Limitations</h2>
+      </div>
+      <div class="card-list">
+        <article class="feature-card feature-card-soft">
+          <h3>Parameter tuning</h3>
+          <p>The quality of clusters depends on choosing ε and minPts well.</p>
+        </article>
+        <article class="feature-card feature-card-soft">
+          <h3>Struggles with varying density</h3>
+          <p>Standard DBSCAN can fail when clusters have different densities.</p>
+        </article>
+        <article class="feature-card feature-card-soft">
+          <h3>Hard to scale</h3>
+          <p>Large datasets may need optimization to run efficiently.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section content-block" id="applications">
+      <div class="section-header">
+        <h2>Applications</h2>
+      </div>
+      <div class="apps-grid">
+        <article>
+          <h3>Healthcare</h3>
+          <p>Finding groups of symptoms or patient measurements where outliers matter.</p>
+        </article>
+        <article>
+          <h3>Finance</h3>
+          <p>Detecting fraudulent transactions that do not fit normal clusters.</p>
+        </article>
+        <article>
+          <h3>Marketing</h3>
+          <p>Identifying niche segments with unusual behavior.</p>
+        </article>
+        <article>
+          <h3>Recommendation</h3>
+          <p>Finding focused interest groups rather than broad customer segments.</p>
+        </article>
+        <article>
+          <h3>Image Processing</h3>
+          <p>Finding connected regions in images where pixels form dense areas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section content-block" id="visualizations">
+      <div class="section-header">
+        <h2>Visualizations</h2>
+      </div>
+      <div class="visual-grid">
+        <div class="visual-card">
+          <div class="visual-density"></div>
+          <p>Showing clusters that appear from dense regions in the data.</p>
+        </div>
+        <div class="visual-card">
+          <div class="visual-hierarchy"></div>
+          <p>Showing hierarchical density levels for HDBSCAN.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section content-block" id="interview">
+      <div class="section-header">
+        <h2>Interview Questions</h2>
+      </div>
+      <div class="accordion" id="faq">
+        <button class="accordion-item" aria-expanded="false">What does DBSCAN stand for?</button>
+        <div class="panel"><p>DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">How does DBSCAN detect noise?</button>
+        <div class="panel"><p>Points with too few neighbors are labeled as noise.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">What is the benefit of HDBSCAN?</button>
+        <div class="panel"><p>It finds stable clusters across different density levels.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">Why is minPts important?</button>
+        <div class="panel"><p>It sets the minimum density needed to form a cluster.</p></div>
+
+        <button class="accordion-item" aria-expanded="false">When should we not use density clustering?</button>
+        <div class="panel"><p>When data has uniform density or when the right distance scale is unclear.</p></div>
+      </div>
+    </section>
+
+    <section class="section content-block" id="summary">
+      <div class="section-header">
+        <h2>Summary</h2>
+      </div>
+      <ul class="summary-list">
+        <li>DBSCAN finds clusters by looking for dense regions of points.</li>
+        <li>It works well for irregular shapes and can separate noise.</li>
+        <li>HDBSCAN extends this by discovering clusters over many density scales.</li>
+        <li>Parameter choices and density variation remain important challenges.</li>
+      </ul>
+    </section>
+
+    <section class="section content-block" id="references">
+      <div class="section-header">
+        <h2>References</h2>
+      </div>
+      <ul class="reference-list">
+        <li>Ester, Kriegel, Sander, Xu, "A Density-Based Algorithm for Discovering Clusters in Large Spatial Databases", 1996.</li>
+        <li>Campello, Moulavi, Sander, "Density-Based Clustering Based on Hierarchical Density Estimates", 2013.</li>
+        <li>Scikit-learn documentation on DBSCAN.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div>
+        <p><strong>Gradientts Learning</strong></p>
+        <p>Premium practical guides for unsupervised clustering.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../k-means/index.html">K-Means</a>
+        <a href="../gmm-em/index.html">GMM + EM</a>
+        <a href="../dbscan-hdbscan/index.html">DBSCAN + HDBSCAN</a>
+        <a href="../hierarchical-clustering/index.html">Hierarchical</a>
+      </div>
+    </div>
+  </footer>
+  <button class="back-to-top" aria-label="Back to top">↑</button>
+  <script src="../script.js"></script>
+</body>
+</html>
