@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hierarchical Clustering | Unsupervised Learning</title>
+    <meta name="theme-color" content="#060b16" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="reading-progress"></div>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">UL</span>
+        <span>Unsupervised Learning</span>
+      </a>
+      <div class="topbar-actions">
+        <label class="search-wrapper">
+          <span>🔎</span>
+          <input type="search" placeholder="Search topics" data-search-input />
+          <div class="search-results" aria-live="polite"></div>
+        </label>
+        <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Hierarchical Guide</h2>
+          <p>Structured study map</p>
+        </div>
+        <nav class="sidebar-nav" aria-label="Hierarchical navigation">
+          <a class="sidebar-link" href="#overview">Overview</a>
+          <a class="sidebar-link" href="#definition">Definition</a>
+          <a class="sidebar-link" href="#introduction">Introduction</a>
+          <a class="sidebar-link" href="#why-hierarchical">Why Hierarchical Clustering</a>
+          <a class="sidebar-link" href="#history">History</a>
+          <a class="sidebar-link" href="#agglomerative">Agglomerative Clustering</a>
+          <a class="sidebar-link" href="#divisive">Divisive Clustering</a>
+          <a class="sidebar-link" href="#distance-matrix">Distance Matrix</a>
+          <a class="sidebar-link" href="#similarity-matrix">Similarity Matrix</a>
+          <a class="sidebar-link" href="#linkage-methods">Linkage Methods</a>
+          <a class="sidebar-link" href="#single-linkage">Single Linkage</a>
+          <a class="sidebar-link" href="#complete-linkage">Complete Linkage</a>
+          <a class="sidebar-link" href="#average-linkage">Average Linkage</a>
+          <a class="sidebar-link" href="#ward-linkage">Ward Linkage</a>
+          <a class="sidebar-link" href="#dendrogram">Dendrogram</a>
+          <a class="sidebar-link" href="#working-process">Working Process</a>
+          <a class="sidebar-link" href="#formula">Mathematical Formula</a>
+          <a class="sidebar-link" href="#flow-diagram">Flow Diagram</a>
+          <a class="sidebar-link" href="#architecture-diagram">Architecture Diagram</a>
+          <a class="sidebar-link" href="#working-example">Working Example</a>
+          <a class="sidebar-link" href="#preprocessing">Preprocessing</a>
+          <a class="sidebar-link" href="#hyperparameters">Hyperparameters</a>
+          <a class="sidebar-link" href="#evaluation-metrics">Evaluation Metrics</a>
+          <a class="sidebar-link" href="#advantages">Advantages</a>
+          <a class="sidebar-link" href="#limitations">Limitations</a>
+          <a class="sidebar-link" href="#applications">Applications</a>
+          <a class="sidebar-link" href="#industry-use-cases">Industry Use Cases</a>
+          <a class="sidebar-link" href="#case-study">Case Study</a>
+          <a class="sidebar-link" href="#implementation-overview">Implementation Overview</a>
+          <a class="sidebar-link" href="#interview-questions">Interview Questions</a>
+          <a class="sidebar-link" href="#faq">FAQ</a>
+          <a class="sidebar-link" href="#summary">Summary</a>
+          <a class="sidebar-link" href="#references">References</a>
+        </nav>
+      </aside>
+
+      <main class="content-area" id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <span>Introduction</span>
+          <span>/</span>
+          <span>Hierarchical</span>
+        </nav>
+
+        <div class="doc-content">
+          <section class="hero" id="overview">
+            <p class="eyebrow">Algorithm Guide</p>
+            <h1>Hierarchical Clustering</h1>
+            <p>Hierarchical clustering builds a set of nested clusters that can be visualized as a tree. It is commonly used when the relationship between groups matters as much as the final grouping itself.</p>
+          </section>
+
+          <section class="section-block" id="definition">
+            <div class="section-heading">
+              <h2>Definition</h2>
+            </div>
+            <p>Hierarchical clustering is a family of clustering methods that organize data into a hierarchy of clusters, from small groups to larger groupings.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Core Idea</h3><p>It forms clusters in a layered manner instead of partitioning data in one step.</p></article>
+              <article class="card"><h3>Nature</h3><p>It is useful for discovering nested structure and relationships among groups.</p></article>
+              <article class="card"><h3>Common Use</h3><p>It is applied in biology, document analysis, and exploratory data analysis.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Hierarchical clustering is especially helpful when you want to examine the structure of the data at multiple levels of granularity.</span></div>
+          </section>
+
+          <section class="section-block" id="introduction">
+            <div class="section-heading">
+              <h2>Introduction</h2>
+            </div>
+            <p>Hierarchical clustering is often introduced as an intuitive way to build groups step by step. Instead of choosing the number of clusters upfront, it creates a tree-like representation of how points merge or split.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Why It Matters</h3><p>It helps analysts inspect the data at different levels of abstraction.</p></article>
+              <article class="card"><h3>Learning Goal</h3><p>It teaches the idea of nested clusters and connectivity in data.</p></article>
+              <article class="card"><h3>Practical Context</h3><p>It is used when interpretability and visualization are important.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Hierarchical clustering is often preferred when the number of clusters is not obvious in advance.</span></div>
+          </section>
+
+          <section class="section-block" id="why-hierarchical">
+            <div class="section-heading">
+              <h2>Why Hierarchical Clustering</h2>
+            </div>
+            <p>This approach is valuable because it produces a full hierarchy of possible clusterings and allows the analyst to choose a level that makes sense for the problem.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Flexible</h3><p>It supports multiple levels of grouping.</p></article>
+              <article class="card"><h3>Visual</h3><p>Dendrograms make the structure easy to understand.</p></article>
+              <article class="card"><h3>Interpretive</h3><p>It provides a richer view of relationships between groups.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>A hierarchical view is often more informative than a single flat partition.</span></div>
+          </section>
+
+          <section class="section-block" id="history">
+            <div class="section-heading">
+              <h2>History</h2>
+            </div>
+            <p>Hierarchical clustering methods have a long history in statistics and taxonomy. They were widely used before modern machine learning libraries because they provide an intuitive representation of similarity.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Early Development</h3><p>They were applied in biology and classification long before modern computing.</p></article>
+              <article class="card"><h3>Modern Adoption</h3><p>They remain important for exploratory analysis and visualization.</p></article>
+              <article class="card"><h3>Legacy</h3><p>They influenced many later clustering algorithms and visualization techniques.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Hierarchical clustering remains relevant because of its interpretability and visual appeal.</span></div>
+          </section>
+
+          <section class="section-block" id="agglomerative">
+            <div class="section-heading">
+              <h2>Agglomerative Clustering</h2>
+            </div>
+            <p>Agglomerative clustering is a bottom-up method. It starts with each point as its own cluster and repeatedly merges the two closest clusters until all points belong to a single cluster.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Bottom-Up</h3><p>Each point begins as a separate group.</p></article>
+              <article class="card"><h3>Merge Step</h3><p>Clusters are merged according to a chosen linkage rule.</p></article>
+              <article class="card"><h3>Use</h3><p>It is the most common form of hierarchical clustering in practice.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Agglomerative clustering is often easier to implement and explain than divisive clustering.</span></div>
+          </section>
+
+          <section class="section-block" id="divisive">
+            <div class="section-heading">
+              <h2>Divisive Clustering</h2>
+            </div>
+            <p>Divisive clustering is a top-down method. It starts with one cluster containing all points and recursively splits clusters until each point is isolated.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Top-Down</h3><p>It begins with a single cluster and progressively divides it.</p></article>
+              <article class="card"><h3>Split Step</h3><p>It identifies clusters that should be separated at each stage.</p></article>
+              <article class="card"><h3>Use</h3><p>It is less common but can be useful when the global structure is known first.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Divisive clustering is conceptually interesting, though less commonly used than agglomerative clustering.</span></div>
+          </section>
+
+          <section class="section-block" id="distance-matrix">
+            <div class="section-heading">
+              <h2>Distance Matrix</h2>
+            </div>
+            <p>A distance matrix stores the pairwise distances between all data points. It is the basic input needed for many hierarchical clustering methods.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Purpose</h3><p>It captures how close data points are to each other.</p></article>
+              <article class="card"><h3>Use</h3><p>It supports the merging or splitting decisions made by the algorithm.</p></article>
+              <article class="card"><h3>Importance</h3><p>The choice of distance measure strongly affects the clustering result.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The distance matrix is essential because hierarchical clustering depends on pairwise relationships.</span></div>
+          </section>
+
+          <section class="section-block" id="similarity-matrix">
+            <div class="section-heading">
+              <h2>Similarity Matrix</h2>
+            </div>
+            <p>A similarity matrix measures how alike two items are, often by transforming a distance measure or using a domain-specific similarity function.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Role</h3><p>It provides an alternative view of pairwise association.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>Higher values usually indicate stronger similarity.</p></article>
+              <article class="card"><h3>Use</h3><p>It is often used when distances are less natural than similarity scores.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Similarity-based representations can be more intuitive in some applications, such as text analysis.</span></div>
+          </section>
+
+          <section class="section-block" id="linkage-methods">
+            <div class="section-heading">
+              <h2>Linkage Methods</h2>
+            </div>
+            <p>Linkage methods define how the distance between two clusters is computed during hierarchical clustering. The choice of linkage strongly affects the structure that emerges.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Purpose</h3><p>To decide which clusters should be merged next.</p></article>
+              <article class="card"><h3>Effect</h3><p>Different linkage rules can produce very different dendrograms.</p></article>
+              <article class="card"><h3>Common Options</h3><p>Single, complete, average, and Ward linkage.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Linkage choice is one of the most important modeling decisions in hierarchical clustering.</span></div>
+          </section>
+
+          <section class="section-block" id="single-linkage">
+            <div class="section-heading">
+              <h2>Single Linkage</h2>
+            </div>
+            <p>Single linkage merges clusters based on the minimum pairwise distance between points from the two clusters. This can lead to long, chaining behavior.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Behavior</h3><p>It tends to connect clusters through the closest pair of points.</p></article>
+              <article class="card"><h3>Strength</h3><p>It can detect elongated chains of data.</p></article>
+              <article class="card"><h3>Limitation</h3><p>It may create elongated and less compact clusters.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Single linkage is sensitive to chaining and may connect clusters that are not truly close overall.</span></div>
+          </section>
+
+          <section class="section-block" id="complete-linkage">
+            <div class="section-heading">
+              <h2>Complete Linkage</h2>
+            </div>
+            <p>Complete linkage merges clusters based on the maximum pairwise distance between points from the two clusters, leading to more compact groupings.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Behavior</h3><p>It focuses on the farthest points between clusters.</p></article>
+              <article class="card"><h3>Strength</h3><p>It tends to form compact clusters.</p></article>
+              <article class="card"><h3>Limitation</h3><p>It can be sensitive to outliers because the farthest pair matters most.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Complete linkage often produces more balanced and compact clusters than single linkage.</span></div>
+          </section>
+
+          <section class="section-block" id="average-linkage">
+            <div class="section-heading">
+              <h2>Average Linkage</h2>
+            </div>
+            <p>Average linkage merges clusters based on the average distance between all pairs of points from the two clusters. It balances the extremes of single and complete linkage.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Behavior</h3><p>It considers the overall similarity between groups.</p></article>
+              <article class="card"><h3>Strength</h3><p>It is often more stable than single linkage.</p></article>
+              <article class="card"><h3>Limitation</h3><p>It may still be affected by cluster shape and scale.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Average linkage is a practical compromise between aggressive and conservative merging strategies.</span></div>
+          </section>
+
+          <section class="section-block" id="ward-linkage">
+            <div class="section-heading">
+              <h2>Ward Linkage</h2>
+            </div>
+            <p>Ward linkage merges clusters in a way that minimizes the increase in within-cluster variance. It is often favored for producing compact clusters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Behavior</h3><p>It seeks to preserve compactness while merging groups.</p></article>
+              <article class="card"><h3>Strength</h3><p>It often yields balanced and interpretable clusters.</p></article>
+              <article class="card"><h3>Limitation</h3><p>It can be more computationally demanding than some other linkage methods.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Ward linkage is popular in practice because it often produces strong, visually appealing clusters.</span></div>
+          </section>
+
+          <section class="section-block" id="dendrogram">
+            <div class="section-heading">
+              <h2>Dendrogram</h2>
+            </div>
+            <p>A dendrogram is a tree-like diagram that shows how clusters are merged or split at each step. It is one of the hallmark visual tools of hierarchical clustering.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Purpose</h3><p>To visualize the hierarchy of cluster formation.</p></article>
+              <article class="card"><h3>Use</h3><p>It helps determine an appropriate number of clusters.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>Higher vertical distances often indicate less similar merges.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Dendrograms are especially useful in exploratory analysis and academic presentations.</span></div>
+          </section>
+
+          <section class="section-block" id="working-process">
+            <div class="section-heading">
+              <h2>Working Process</h2>
+            </div>
+            <p>The algorithm builds the hierarchy by repeatedly merging the closest clusters or splitting existing ones, depending on whether it is agglomerative or divisive.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Initialize</h3><p>Start with each data point as its own cluster.</p></article>
+              <article class="card"><h3>Merge</h3><p>Combine the nearest clusters according to the linkage rule.</p></article>
+              <article class="card"><h3>Repeat</h3><p>Continue until every point is in one cluster or the desired number of clusters is reached.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The hierarchy makes it possible to inspect many clustering solutions without retraining the model.</span></div>
+          </section>
+
+          <section class="section-block" id="formula">
+            <div class="section-heading">
+              <h2>Mathematical Formula</h2>
+            </div>
+            <p>Hierarchical clustering uses pairwise distances to decide how clusters should be merged or split. The precise formula depends on the linkage method.</p>
+            <div class="formula-card">
+              <strong>General Criterion</strong>
+              <span>$$D(A,B) = \text{distance between cluster } A \text{ and cluster } B$$</span>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Meaning</h3><p>The linkage function determines how cluster-to-cluster distance is computed.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>Different linkages produce different merge behavior and cluster shapes.</p></article>
+              <article class="card"><h3>Role</h3><p>It is central to the algorithm’s decision-making process.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Understanding the linkage formula helps explain why different clustering solutions emerge.</span></div>
+          </section>
+
+          <section class="section-block" id="flow-diagram">
+            <div class="section-heading">
+              <h2>Flow Diagram</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>Compute Pairwise Distances → Choose Linkage Rule
+→ Merge or Split Clusters → Update Hierarchy
+→ Stop at Desired Level → Final Clusters</code></pre>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The flow shows how the hierarchy is built step by step.</span></div>
+          </section>
+
+          <section class="section-block" id="architecture-diagram">
+            <div class="section-heading">
+              <h2>Architecture Diagram</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>Raw Data
+   ↓
+Distance/Similarity Matrix
+   ↓
+Linkage Rule
+   ↓
+Merge/Split Operations
+   ↓
+Dendrogram and Cluster Cut</code></pre>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The architecture emphasizes the hierarchy built from pairwise relationships.</span></div>
+          </section>
+
+          <section class="section-block" id="working-example">
+            <div class="section-heading">
+              <h2>Working Example</h2>
+            </div>
+            <p>Suppose a small set of points forms a natural hierarchy, such as broad groups that contain smaller subgroups. Hierarchical clustering would first merge the closest pairs of points and then progressively combine those groups into larger clusters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Example Setup</h3><p>Points are organized from most similar to less similar.</p></article>
+              <article class="card"><h3>Outcome</h3><p>The algorithm produces a hierarchy that can be cut at the appropriate level.</p></article>
+              <article class="card"><h3>Insight</h3><p>This illustrates how hierarchy reveals structure at multiple scales.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Hierarchical clustering is useful when the natural grouping level is not known in advance.</span></div>
+          </section>
+
+          <section class="section-block" id="preprocessing">
+            <div class="section-heading">
+              <h2>Preprocessing</h2>
+            </div>
+            <p>Preprocessing matters because hierarchical clustering depends on distances and similarity measures. Scaling and cleaning the data can strongly impact the resulting hierarchy.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Scaling</h3><p>Standardize features so that distance measurements are comparable.</p></article>
+              <article class="card"><h3>Handling Missing Values</h3><p>Missing data should be processed carefully before computing pairwise distances.</p></article>
+              <article class="card"><h3>Feature Selection</h3><p>Remove irrelevant features to avoid noisy clustering decisions.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Good preprocessing helps ensure the hierarchy reflects the actual structure of the data.</span></div>
+          </section>
+
+          <section class="section-block" id="hyperparameters">
+            <div class="section-heading">
+              <h2>Hyperparameters</h2>
+            </div>
+            <p>Hierarchical clustering involves choices such as distance metric, linkage method, and the level at which the tree is cut into clusters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Distance Metric</h3><p>Determines how similarity between points is measured.</p></article>
+              <article class="card"><h3>Linkage Method</h3><p>Controls how cluster-to-cluster similarity is computed.</p></article>
+              <article class="card"><h3>Cut Level</h3><p>Specifies how many clusters are ultimately retained.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These choices should be guided by both data characteristics and analytical goals.</span></div>
+          </section>
+
+          <section class="section-block" id="evaluation-metrics">
+            <div class="section-heading">
+              <h2>Evaluation Metrics</h2>
+            </div>
+            <p>Evaluation metrics help assess whether the hierarchy and the selected cut level provide meaningful clusters. Depending on the goal, one may inspect compactness, separation, or stability.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Silhouette Score</h3><p>Measures how well points fit their assigned clusters.</p></article>
+              <article class="card"><h3>Cophenetic Correlation</h3><p>Evaluates how faithfully a dendrogram preserves pairwise distances.</p></article>
+              <article class="card"><h3>Cluster Stability</h3><p>Checks whether similar results appear across variations of the data or parameters.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>It is often helpful to examine both the dendrogram and cluster quality metrics.</span></div>
+          </section>
+
+          <section class="section-block" id="advantages">
+            <div class="section-heading">
+              <h2>Advantages</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Hierarchical View</h3><p>It reveals nested relationships between groups.</p></article>
+              <article class="card"><h3>No Need to Choose k Upfront</h3><p>It supports exploration at multiple cluster counts.</p></article>
+              <article class="card"><h3>Interpretability</h3><p>Dendrograms make it easy to explain the structure to others.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Its interpretability makes it a strong option in exploratory settings.</span></div>
+          </section>
+
+          <section class="section-block" id="limitations">
+            <div class="section-heading">
+              <h2>Limitations</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Computational Cost</h3><p>It can be expensive for very large datasets.</p></article>
+              <article class="card"><h3>Linkage Sensitivity</h3><p>Different linkage rules can lead to very different outcomes.</p></article>
+              <article class="card"><h3>Scaling Challenges</h3><p>It can become less practical as the dataset grows.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Hierarchical clustering is powerful, but it may be less practical for extremely large datasets.</span></div>
+          </section>
+
+          <section class="section-block" id="applications">
+            <div class="section-heading">
+              <h2>Applications</h2>
+            </div>
+            <p>Hierarchical clustering is widely used when relationships between groups are important or when a tree-like structure is meaningful.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Bioinformatics</h3><p>Group genes or species based on similarity.</p></article>
+              <article class="card"><h3>Text Mining</h3><p>Organize documents into topic-based hierarchies.</p></article>
+              <article class="card"><h3>Customer Analysis</h3><p>Discover nested market segments.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Hierarchical clustering is especially useful when the structure of the data is naturally nested.</span></div>
+          </section>
+
+          <section class="section-block" id="industry-use-cases">
+            <div class="section-heading">
+              <h2>Industry Use Cases</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Healthcare</h3><p>Group patient profiles or symptom patterns into broader and narrower categories.</p></article>
+              <article class="card"><h3>Retail</h3><p>Discover multi-level customer segments for marketing strategies.</p></article>
+              <article class="card"><h3>Research</h3><p>Organize experimental observations into interpretable hierarchies.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Industry use cases often benefit from the tree-like structure of the method.</span></div>
+          </section>
+
+          <section class="section-block" id="case-study">
+            <div class="section-heading">
+              <h2>Case Study</h2>
+            </div>
+            <p>A research team might use hierarchical clustering to study genetic similarity across samples. The hierarchy would allow them to explore broad families of similarity as well as smaller subgroups.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Problem</h3><p>Uncover meaningful structure in a complex biological dataset.</p></article>
+              <article class="card"><h3>Approach</h3><p>Build a dendrogram and inspect the cluster hierarchy.</p></article>
+              <article class="card"><h3>Outcome</h3><p>Reveal nested groups and support further analysis.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Case studies show how hierarchical clustering can support scientific interpretation.</span></div>
+          </section>
+
+          <section class="section-block" id="implementation-overview">
+            <div class="section-heading">
+              <h2>Implementation Overview</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>from sklearn.cluster import AgglomerativeClustering
+model = AgglomerativeClustering(n_clusters=3)
+labels = model.fit_predict(X_scaled)</code></pre>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Library Support</h3><p>Scikit-learn provides an agglomerative clustering implementation.</p></article>
+              <article class="card"><h3>Workflow</h3><p>Scale the data, define the linkage method, and inspect the resulting clusters.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>Study the dendrogram and compare different cut levels.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Implementation is simple, but the choice of linkage matters greatly.</span></div>
+          </section>
+
+          <section class="section-block" id="interview-questions">
+            <div class="section-heading">
+              <h2>Interview Questions</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Question 1</h3><p>How does hierarchical clustering differ from K-Means?</p></article>
+              <article class="card"><h3>Question 2</h3><p>What does a dendrogram represent?</p></article>
+              <article class="card"><h3>Question 3</h3><p>Why does linkage choice affect the clustering result?</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These questions are common in interviews and classroom discussions.</span></div>
+          </section>
+
+          <section class="section-block" id="faq">
+            <div class="section-heading">
+              <h2>FAQ</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Is hierarchical clustering supervised?</h3><p>No. It is an unsupervised learning method.</p></article>
+              <article class="card"><h3>Can it handle large datasets?</h3><p>It can, but computational cost increases significantly as the dataset grows.</p></article>
+              <article class="card"><h3>What is the purpose of a dendrogram?</h3><p>It visualizes the clustering hierarchy and helps select an appropriate cluster count.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>FAQs help resolve common questions before moving to implementation or comparison.</span></div>
+          </section>
+
+          <section class="section-block" id="summary">
+            <div class="section-heading">
+              <h2>Summary</h2>
+            </div>
+            <p>Hierarchical clustering offers a rich and interpretable way to organize data into nested groups. It is especially useful when the analyst wants to understand relationships at multiple levels of detail.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Key Takeaway</h3><p>It builds a hierarchy of clusters rather than a single flat partition.</p></article>
+              <article class="card"><h3>Best Use</h3><p>It is ideal for exploratory analysis and hierarchical structure discovery.</p></article>
+              <article class="card"><h3>Next Step</h3><p>Compare hierarchical clustering with partition-based and density-based methods for a fuller picture.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Understanding hierarchical clustering gives valuable perspective on how groups can be organized and interpreted.</span></div>
+          </section>
+
+          <section class="section-block" id="references">
+            <div class="section-heading">
+              <h2>References</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Reference</th><th>Type</th><th>Use</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Scikit-learn Agglomerative Clustering Documentation</td><td>Reference</td><td>Official API and explanation</td></tr>
+                  <tr><td>Microsoft Learn ML Modules</td><td>Educational</td><td>Foundational clustering concepts</td></tr>
+                  <tr><td>Seaborn and SciPy Clustering Guides</td><td>Educational</td><td>Visualization and dendrograms</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>References provide entry points for further study and practice.</span></div>
+          </section>
+
+          <div class="pagination">
+            <a class="btn btn-secondary" href="../dbscan/index.html">← Previous</a>
+            <a class="btn btn-primary" href="../comparison.html">Next →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 AI/ML Internship</span>
+      <span>Unsupervised Learning: Clustering</span>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comparison | Unsupervised Learning</title>
+    <meta name="theme-color" content="#060b16" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="reading-progress"></div>
+    <header class="topbar">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">UL</span>
+        <span>Unsupervised Learning</span>
+      </a>
+      <div class="topbar-actions">
+        <label class="search-wrapper">
+          <span>🔎</span>
+          <input type="search" placeholder="Search topics" data-search-input />
+          <div class="search-results" aria-live="polite"></div>
+        </label>
+        <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Clustering Guide</h2>
+          <p>Structured learning path</p>
+        </div>
+        <nav class="sidebar-nav" aria-label="Documentation navigation">
+          <a class="sidebar-link" href="index.html">Home</a>
+          <a class="sidebar-link" href="introduction/index.html">Introduction</a>
+          <a class="sidebar-link" href="kmeans/index.html">K-Means</a>
+          <a class="sidebar-link" href="gmm/index.html">Gaussian Mixture Models</a>
+          <a class="sidebar-link" href="dbscan/index.html">DBSCAN</a>
+          <a class="sidebar-link" href="hierarchical/index.html">Hierarchical Clustering</a>
+          <a class="sidebar-link active" href="comparison.html">Comparison</a>
+          <a class="sidebar-link" href="references.html">References</a>
+        </nav>
+      </aside>
+
+      <main class="content-area" id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a>
+          <span>/</span>
+          <span>Comparison</span>
+        </nav>
+
+        <div class="doc-content">
+          <section class="hero" id="comparison">
+            <p class="eyebrow">Algorithm Comparison</p>
+            <h1>Clustering Algorithm Comparison</h1>
+            <p>Each clustering method makes different assumptions about data shape, noise, and the number of groups. This page compares K-Means, GMM, DBSCAN, HDBSCAN, and hierarchical clustering in a practical way.</p>
+          </section>
+
+          <section class="section-block" id="comparison-tables">
+            <div class="section-heading">
+              <h2>Comparison Tables</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Algorithm</th>
+                    <th>Cluster Shape</th>
+                    <th>Requires k?</th>
+                    <th>Handles Noise?</th>
+                    <th>Scalability</th>
+                    <th>Best For</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>K-Means</td>
+                    <td>Spherical, compact clusters</td>
+                    <td>Yes</td>
+                    <td>No</td>
+                    <td>High</td>
+                    <td>Simple, fast partitioning</td>
+                  </tr>
+                  <tr>
+                    <td>GMM</td>
+                    <td>Elliptical, probabilistic clusters</td>
+                    <td>Yes</td>
+                    <td>Partially</td>
+                    <td>Medium</td>
+                    <td>Soft assignments and overlapping clusters</td>
+                  </tr>
+                  <tr>
+                    <td>DBSCAN</td>
+                    <td>Arbitrary density-based clusters</td>
+                    <td>No</td>
+                    <td>Yes</td>
+                    <td>High</td>
+                    <td>Noise-aware clustering on irregular shapes</td>
+                  </tr>
+                  <tr>
+                    <td>HDBSCAN</td>
+                    <td>Density-based with variable densities</td>
+                    <td>No</td>
+                    <td>Yes</td>
+                    <td>Medium</td>
+                    <td>Robust clustering without tuning k</td>
+                  </tr>
+                  <tr>
+                    <td>Hierarchical</td>
+                    <td>Nested or tree-like structure</td>
+                    <td>No, but cut level needed</td>
+                    <td>Usually not by default</td>
+                    <td>Lower for large data</td>
+                    <td>Exploratory analysis and dendrograms</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Algorithm</th>
+                    <th>Main Hyperparameters</th>
+                    <th>Typical Evaluation</th>
+                    <th>Weakness</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>K-Means</td>
+                    <td>k, initialization, max iterations</td>
+                    <td>Silhouette, inertia</td>
+                    <td>Struggles with non-spherical clusters</td>
+                  </tr>
+                  <tr>
+                    <td>GMM</td>
+                    <td>k, covariance type, regularization</td>
+                    <td>BIC, silhouette, log-likelihood</td>
+                    <td>Can overfit or be sensitive to initialization</td>
+                  </tr>
+                  <tr>
+                    <td>DBSCAN</td>
+                    <td>eps, MinPts</td>
+                    <td>Silhouette, cluster stability</td>
+                    <td>Can struggle with varying densities</td>
+                  </tr>
+                  <tr>
+                    <td>HDBSCAN</td>
+                    <td>min_cluster_size, min_samples</td>
+                    <td>Stability, silhouette</td>
+                    <td>Can be harder to explain than simpler methods</td>
+                  </tr>
+                  <tr>
+                    <td>Hierarchical</td>
+                    <td>distance metric, linkage method, cut level</td>
+                    <td>Silhouette, cophenetic correlation</td>
+                    <td>Computational cost grows quickly</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>There is no universally best clustering algorithm; the right choice depends on shape, density, noise, and interpretability needs.</span></div>
+          </section>
+
+          <section class="section-block" id="advantages">
+            <div class="section-heading">
+              <h2>Advantages</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>K-Means</h3><p>Fast, simple, and easy to scale for large datasets.</p></article>
+              <article class="card"><h3>GMM</h3><p>Provides probabilistic memberships and handles overlapping clusters better.</p></article>
+              <article class="card"><h3>DBSCAN</h3><p>Identifies arbitrary shapes and automatically labels noise.</p></article>
+              <article class="card"><h3>HDBSCAN</h3><p>Extends DBSCAN to variable-density data and reduces sensitivity to fixed eps.</p></article>
+              <article class="card"><h3>Hierarchical</h3><p>Offers a full cluster hierarchy and interpretable dendrograms.</p></article>
+            </div>
+          </section>
+
+          <section class="section-block" id="limitations">
+            <div class="section-heading">
+              <h2>Limitations</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>K-Means</h3><p>Assumes compact spherical clusters and is affected by outliers.</p></article>
+              <article class="card"><h3>GMM</h3><p>Needs good initialization and can be more computationally expensive.</p></article>
+              <article class="card"><h3>DBSCAN</h3><p>Can struggle when cluster densities differ a lot.</p></article>
+              <article class="card"><h3>HDBSCAN</h3><p>More complex to tune and explain than K-Means.</p></article>
+              <article class="card"><h3>Hierarchical</h3><p>May be slow on large data and can be sensitive to linkage choice.</p></article>
+            </div>
+          </section>
+
+          <section class="section-block" id="applications">
+            <div class="section-heading">
+              <h2>Applications</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>K-Means</h3><p>Customer segmentation, image compression, and simple grouping tasks.</p></article>
+              <article class="card"><h3>GMM</h3><p>Soft clustering for finance, speech, and probabilistic pattern analysis.</p></article>
+              <article class="card"><h3>DBSCAN</h3><p>Anomaly detection, spatial clustering, and irregular pattern discovery.</p></article>
+              <article class="card"><h3>HDBSCAN</h3><p>High-dimensional exploratory clustering and robust density-based grouping.</p></article>
+              <article class="card"><h3>Hierarchical</h3><p>Gene analysis, topic modeling, and hierarchical taxonomy construction.</p></article>
+            </div>
+          </section>
+
+          <section class="section-block" id="hyperparameters">
+            <div class="section-heading">
+              <h2>Hyperparameters</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>K-Means</h3><p>Choose the number of clusters, initialization strategy, and maximum iterations.</p></article>
+              <article class="card"><h3>GMM</h3><p>Choose the number of components, covariance type, and regularization strength.</p></article>
+              <article class="card"><h3>DBSCAN</h3><p>Tune epsilon and minimum points to control how dense a region must be.</p></article>
+              <article class="card"><h3>HDBSCAN</h3><p>Set minimum cluster size and minimum samples to control cluster stability.</p></article>
+              <article class="card"><h3>Hierarchical</h3><p>Select distance metric, linkage method, and the cutoff level for clusters.</p></article>
+            </div>
+          </section>
+
+          <section class="section-block" id="evaluation-metrics">
+            <div class="section-heading">
+              <h2>Evaluation Metrics</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Silhouette Score</h3><p>Useful for comparing cluster compactness and separation.</p></article>
+              <article class="card"><h3>Calinski-Harabasz</h3><p>Measures between-cluster dispersion versus within-cluster dispersion.</p></article>
+              <article class="card"><h3>BIC</h3><p>Common for GMM when comparing models with different numbers of components.</p></article>
+              <article class="card"><h3>Cophenetic Correlation</h3><p>Useful for dendrogram-based evaluation in hierarchical clustering.</p></article>
+              <article class="card"><h3>Stability</h3><p>Useful for density-based methods when cluster membership should be consistent.</p></article>
+            </div>
+          </section>
+
+          <section class="section-block" id="when-to-use">
+            <div class="section-heading">
+              <h2>When to Use Which Algorithm</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Use K-Means when</h3><p>You need a fast baseline and the clusters are expected to be compact and roughly spherical.</p></article>
+              <article class="card"><h3>Use GMM when</h3><p>You want soft assignments or clusters that may overlap and have different shapes.</p></article>
+              <article class="card"><h3>Use DBSCAN when</h3><p>You want to find clusters of arbitrary shape while ignoring noise.</p></article>
+              <article class="card"><h3>Use HDBSCAN when</h3><p>You need a more robust density-based method for variable-density data.</p></article>
+              <article class="card"><h3>Use Hierarchical when</h3><p>You care about the full cluster structure and want to inspect a dendrogram.</p></article>
+            </div>
+          </section>
+
+          <section class="section-block" id="decision-tree">
+            <div class="section-heading">
+              <h2>Decision Tree for Selecting Algorithms</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>Start
+├─ Need a simple and fast baseline? → K-Means
+├─ Need soft assignments / overlap? → GMM
+├─ Need to ignore noise and find irregular shapes? → DBSCAN
+├─ Need robust density-based clustering with variable density? → HDBSCAN
+└─ Need a hierarchy and dendrogram? → Hierarchical Clustering</code></pre>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>A practical choice is often to try a fast baseline first, then compare with a density-based or probabilistic method if the data structure suggests it.</span></div>
+          </section>
+
+          <section class="section-block" id="summary">
+            <div class="section-heading">
+              <h2>Summary</h2>
+            </div>
+            <p>Clustering is not one-size-fits-all. K-Means is usually the first choice for speed and simplicity, GMM adds flexibility for soft and overlapping clusters, DBSCAN and HDBSCAN are better for discovering irregular structures and noise, and hierarchical clustering is valuable when the data structure itself is important.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Key Takeaway</h3><p>Choose algorithms based on data shape, noise, interpretability, and computational budget.</p></article>
+              <article class="card"><h3>Practical Rule</h3><p>Start simple, inspect the results, and switch methods if the assumptions do not fit the data.</p></article>
+              <article class="card"><h3>Best Practice</h3><p>Compare multiple clustering methods and evaluate them using task-appropriate metrics.</p></article>
+            </div>
+          </section>
+
+          <div class="pagination">
+            <a class="btn btn-secondary" href="hierarchical/index.html">← Previous</a>
+            <a class="btn btn-primary" href="references.html">Next →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 AI/ML Internship</span>
+      <span>Unsupervised Learning: Clustering</span>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+    <script src="js/main.js"></script>
+  </body>
+</html>

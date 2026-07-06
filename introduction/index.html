@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction | Unsupervised Learning</title>
+    <meta name="theme-color" content="#060b16" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="reading-progress"></div>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">UL</span>
+        <span>Unsupervised Learning</span>
+      </a>
+      <div class="topbar-actions">
+        <label class="search-wrapper">
+          <span>🔎</span>
+          <input type="search" placeholder="Search topics" data-search-input />
+          <div class="search-results" aria-live="polite"></div>
+        </label>
+        <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Clustering Guide</h2>
+          <p>Structured learning path</p>
+        </div>
+        <nav class="sidebar-nav" aria-label="Documentation navigation">
+          <a class="sidebar-link" href="../index.html">Home</a>
+          <a class="sidebar-link active" href="index.html">Introduction</a>
+          <a class="sidebar-link" href="../kmeans/index.html">K-Means</a>
+          <a class="sidebar-link" href="../gmm/index.html">Gaussian Mixture Models</a>
+          <a class="sidebar-link" href="../dbscan/index.html">DBSCAN</a>
+          <a class="sidebar-link" href="../hierarchical/index.html">Hierarchical Clustering</a>
+          <a class="sidebar-link" href="../comparison.html">Comparison</a>
+          <a class="sidebar-link" href="../references.html">References</a>
+        </nav>
+      </aside>
+
+      <main class="content-area" id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <span>Introduction</span>
+        </nav>
+
+        <div class="doc-content">
+          <section class="hero">
+            <p class="eyebrow">Documentation</p>
+            <h1>Introduction to Clustering</h1>
+            <p>This page introduces the core concepts behind machine learning, unsupervised learning, and clustering as a foundational topic in data analysis.</p>
+          </section>
+
+          <section class="section-block" id="machine-learning">
+            <div class="section-heading">
+              <h2>Machine Learning</h2>
+            </div>
+            <p>Machine learning is a branch of artificial intelligence that enables systems to learn from data and improve over time without being explicitly programmed for every task.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Purpose</h3><p>To identify patterns, make predictions, and infer insights from data.</p></article>
+              <article class="card"><h3>Examples</h3><p>Spam filtering, recommendation systems, medical image analysis, and forecasting.</p></article>
+              <article class="card"><h3>Why It Matters</h3><p>It allows organizations to extract value from large and complex datasets.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Machine learning is often categorized by the type of supervision available during training.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="types-of-machine-learning">
+            <div class="section-heading">
+              <h2>Types of Machine Learning</h2>
+            </div>
+            <p>Machine learning approaches are commonly divided into supervised learning, unsupervised learning, and reinforcement learning.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Supervised Learning</h3><p>Uses labeled data to learn mappings from inputs to known outputs.</p></article>
+              <article class="card"><h3>Unsupervised Learning</h3><p>Finds hidden structure in unlabeled data without target labels.</p></article>
+              <article class="card"><h3>Reinforcement Learning</h3><p>Trains an agent through feedback from rewards and penalties.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Clustering belongs to the family of unsupervised learning techniques.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="unsupervised-learning">
+            <div class="section-heading">
+              <h2>Unsupervised Learning</h2>
+            </div>
+            <p>Unsupervised learning explores data without explicit labels. Its purpose is to uncover structure, similarity, and hidden patterns that may not be obvious at first glance.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Common Tasks</h3><p>Clustering, dimensionality reduction, and association discovery.</p></article>
+              <article class="card"><h3>Example</h3><p>Grouping customers by purchasing behavior without using predefined customer categories.</p></article>
+              <article class="card"><h3>Value</h3><p>It is especially useful when labels are missing or expensive to obtain.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Unsupervised methods are often used as exploratory tools before deeper modeling.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="clustering">
+            <div class="section-heading">
+              <h2>Clustering</h2>
+            </div>
+            <p>Clustering is the process of grouping data points into clusters such that points within the same cluster are more similar to each other than to points in different clusters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Goal</h3><p>To discover natural groupings in data.</p></article>
+              <article class="card"><h3>Example</h3><p>Grouping similar documents by topic or customers by browsing behavior.</p></article>
+              <article class="card"><h3>Output</h3><p>A set of clusters that represent hidden patterns in the data.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Clustering is often used when the exact class labels are unknown.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="general-workflow">
+            <div class="section-heading">
+              <h2>General Clustering Workflow</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>1. Define Objective</h3><p>Identify what the clustering should reveal.</p></article>
+              <article class="card"><h3>2. Prepare Data</h3><p>Clean, transform, and normalize the dataset.</p></article>
+              <article class="card"><h3>3. Choose Method</h3><p>Select an algorithm suited to the structure of the data.</p></article>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>4. Evaluate Clusters</h3><p>Measure cohesion, separation, and stability.</p></article>
+              <article class="card"><h3>5. Interpret Results</h3><p>Assign meaning to the discovered groups.</p></article>
+              <article class="card"><h3>6. Refine</h3><p>Adjust preprocessing or model settings as needed.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>A strong clustering workflow combines statistical reasoning with domain knowledge.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="distance-metrics">
+            <div class="section-heading">
+              <h2>Distance Metrics</h2>
+            </div>
+            <p>Distance metrics define how similarity between data points is measured. They strongly influence clustering outcomes.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Euclidean Distance</h3><p>Commonly used for continuous numeric features.</p></article>
+              <article class="card"><h3>Manhattan Distance</h3><p>Useful when movement is measured along axes rather than straight lines.</p></article>
+              <article class="card"><h3>Cosine Similarity</h3><p>Frequently used for text and high-dimensional data.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Different metrics can produce very different cluster structures.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="preprocessing-techniques">
+            <div class="section-heading">
+              <h2>Preprocessing Techniques</h2>
+            </div>
+            <p>Preprocessing helps transform raw data into a form that clustering algorithms can interpret more effectively.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Scaling</h3><p>Standardizes features so that larger numeric ranges do not dominate.</p></article>
+              <article class="card"><h3>Encoding</h3><p>Converts categorical variables into a usable representation.</p></article>
+              <article class="card"><h3>Handling Missing Values</h3><p>Removes or imputes incomplete data points carefully.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Proper preprocessing is often crucial for producing meaningful clustering results.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="evaluation-metrics">
+            <div class="section-heading">
+              <h2>Evaluation Metrics</h2>
+            </div>
+            <p>Evaluation metrics help assess whether the discovered clusters are meaningful and well-separated.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Silhouette Score</h3><p>Measures how similar an object is to its own cluster compared with other clusters.</p></article>
+              <article class="card"><h3>Davies-Bouldin Index</h3><p>Evaluates compactness and separation among clusters.</p></article>
+              <article class="card"><h3>Inertia</h3><p>Measures the within-cluster variance, especially useful for centroid-based methods.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>No single metric is perfect, so evaluation should consider both numerical and practical criteria.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="applications">
+            <div class="section-heading">
+              <h2>Applications</h2>
+            </div>
+            <p>Clustering is widely used across industries to uncover structure in unlabeled data.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Customer Segmentation</h3><p>Groups customers by purchasing or browsing behavior.</p></article>
+              <article class="card"><h3>Document Organization</h3><p>Clusters similar documents for search and recommendation.</p></article>
+              <article class="card"><h3>Image Analysis</h3><p>Identifies regions, patterns, or similar visual objects.</p></article>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Clustering is especially useful when the data has no labels but still contains meaningful structure.</span>
+            </div>
+          </section>
+
+          <section class="section-block" id="comparison-algorithms">
+            <div class="section-heading">
+              <h2>Comparison of Clustering Algorithms</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Algorithm</th><th>Strength</th><th>Best Suited For</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>K-Means</td><td>Fast and simple</td><td>Compact, spherical groups</td></tr>
+                  <tr><td>GMM</td><td>Probabilistic assignments</td><td>Soft clustering and overlapping groups</td></tr>
+                  <tr><td>DBSCAN</td><td>Handles noise and irregular shapes</td><td>Density-based cluster discovery</td></tr>
+                  <tr><td>Hierarchical</td><td>Reveals nested structure</td><td>Interpretability and tree-based grouping</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>Different algorithms are better suited to different data shapes and objectives.</span>
+            </div>
+          </section>
+
+          <div class="pagination">
+            <a class="btn btn-secondary" href="../index.html">← Previous</a>
+            <a class="btn btn-primary" href="../kmeans/index.html">Next →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 AI/ML Internship</span>
+      <span>Unsupervised Learning: Clustering</span>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

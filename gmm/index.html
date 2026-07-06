@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GMM | Unsupervised Learning</title>
+    <meta name="theme-color" content="#060b16" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="reading-progress"></div>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">UL</span>
+        <span>Unsupervised Learning</span>
+      </a>
+      <div class="topbar-actions">
+        <label class="search-wrapper">
+          <span>🔎</span>
+          <input type="search" placeholder="Search topics" data-search-input />
+          <div class="search-results" aria-live="polite"></div>
+        </label>
+        <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>GMM Guide</h2>
+          <p>Structured study map</p>
+        </div>
+        <nav class="sidebar-nav" aria-label="GMM navigation">
+          <a class="sidebar-link" href="#overview">Overview</a>
+          <a class="sidebar-link" href="#definition">Definition</a>
+          <a class="sidebar-link" href="#introduction">Introduction</a>
+          <a class="sidebar-link" href="#why-gmm">Why GMM</a>
+          <a class="sidebar-link" href="#history">History</a>
+          <a class="sidebar-link" href="#gaussian-distribution">Gaussian Distribution</a>
+          <a class="sidebar-link" href="#pdf">Probability Density Function</a>
+          <a class="sidebar-link" href="#hard-vs-soft">Hard vs Soft Clustering</a>
+          <a class="sidebar-link" href="#mixing-coefficients">Mixing Coefficients</a>
+          <a class="sidebar-link" href="#covariance-matrix">Covariance Matrix</a>
+          <a class="sidebar-link" href="#em-algorithm">Expectation Maximization Algorithm</a>
+          <a class="sidebar-link" href="#expectation-step">Expectation Step</a>
+          <a class="sidebar-link" href="#maximization-step">Maximization Step</a>
+          <a class="sidebar-link" href="#working-process">Working Process</a>
+          <a class="sidebar-link" href="#formula">Mathematical Formula</a>
+          <a class="sidebar-link" href="#flow-diagram">Flow Diagram</a>
+          <a class="sidebar-link" href="#architecture-diagram">Architecture Diagram</a>
+          <a class="sidebar-link" href="#working-example">Working Example</a>
+          <a class="sidebar-link" href="#preprocessing">Preprocessing</a>
+          <a class="sidebar-link" href="#hyperparameters">Hyperparameters</a>
+          <a class="sidebar-link" href="#evaluation-metrics">Evaluation Metrics</a>
+          <a class="sidebar-link" href="#advantages">Advantages</a>
+          <a class="sidebar-link" href="#limitations">Limitations</a>
+          <a class="sidebar-link" href="#applications">Applications</a>
+          <a class="sidebar-link" href="#industry-use-cases">Industry Use Cases</a>
+          <a class="sidebar-link" href="#case-study">Case Study</a>
+          <a class="sidebar-link" href="#comparison-kmeans">Comparison with K-Means</a>
+          <a class="sidebar-link" href="#implementation-overview">Implementation Overview</a>
+          <a class="sidebar-link" href="#interview-questions">Interview Questions</a>
+          <a class="sidebar-link" href="#faq">FAQ</a>
+          <a class="sidebar-link" href="#summary">Summary</a>
+          <a class="sidebar-link" href="#references">References</a>
+        </nav>
+      </aside>
+
+      <main class="content-area" id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <span>Introduction</span>
+          <span>/</span>
+          <span>GMM</span>
+        </nav>
+
+        <div class="doc-content">
+          <section class="hero" id="overview">
+            <p class="eyebrow">Algorithm Guide</p>
+            <h1>Gaussian Mixture Models</h1>
+            <p>Gaussian Mixture Models are probabilistic clustering methods that model data as a mixture of several Gaussian distributions. This page introduces GMM in a structured way for study, revision, and interview preparation.</p>
+          </section>
+
+          <section class="section-block" id="definition">
+            <div class="section-heading">
+              <h2>Definition</h2>
+            </div>
+            <p>A Gaussian Mixture Model is a probabilistic model that assumes data points are generated from a mixture of multiple Gaussian distributions, each with its own mean and covariance.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Core Idea</h3><p>It represents the dataset as a combination of several probability distributions rather than a single compact center.</p></article>
+              <article class="card"><h3>Nature</h3><p>It is flexible and can model elliptical clusters that are not well represented by K-Means.</p></article>
+              <article class="card"><h3>Common Use</h3><p>It is used for density estimation, clustering, and probabilistic segmentation.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Unlike K-Means, GMM assigns probabilities of belonging to each component rather than a hard label.</span></div>
+          </section>
+
+          <section class="section-block" id="introduction">
+            <div class="section-heading">
+              <h2>Introduction</h2>
+            </div>
+            <p>GMM is introduced as a probabilistic extension of clustering. It is often preferred when the data suggests overlapping clusters or when soft assignments are useful.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Why It Matters</h3><p>It offers richer information about uncertainty in cluster membership.</p></article>
+              <article class="card"><h3>Learning Goal</h3><p>It helps explain how statistical distributions can represent complex cluster shapes.</p></article>
+              <article class="card"><h3>Practical Context</h3><p>It is frequently used in image processing, speech modeling, and anomaly detection.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>GMM is especially helpful when clusters overlap and are not perfectly separated.</span></div>
+          </section>
+
+          <section class="section-block" id="why-gmm">
+            <div class="section-heading">
+              <h2>Why GMM</h2>
+            </div>
+            <p>GMM is useful because it captures uncertainty and allows components to have different shapes, sizes, and orientations. This flexibility makes it more expressive than a simple centroid-based method.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Flexible</h3><p>Each component can have its own covariance structure.</p></article>
+              <article class="card"><h3>Probabilistic</h3><p>It produces soft probabilities instead of only hard labels.</p></article>
+              <article class="card"><h3>Expressive</h3><p>It can model more complex cluster geometry than K-Means.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>GMM is often preferred when clusters are not circular and have different variances.</span></div>
+          </section>
+
+          <section class="section-block" id="history">
+            <div class="section-heading">
+              <h2>History</h2>
+            </div>
+            <p>Gaussian Mixture Models grew out of mixture modeling and statistical inference. Over time, they became a standard tool in unsupervised learning because of their strong probabilistic foundation and wide range of applications.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Statistical Roots</h3><p>They are built on classical probability theory and maximum likelihood estimation.</p></article>
+              <article class="card"><h3>Modern Usage</h3><p>They remain important in machine learning, computer vision, and speech processing.</p></article>
+              <article class="card"><h3>Legacy</h3><p>They are foundational for many modern probabilistic models.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The EM algorithm made GMM practical and widely adopted.</span></div>
+          </section>
+
+          <section class="section-block" id="gaussian-distribution">
+            <div class="section-heading">
+              <h2>Gaussian Distribution</h2>
+            </div>
+            <p>A Gaussian distribution, also called a normal distribution, is a continuous probability distribution characterized by a mean and variance. In GMM, each cluster is modeled as a Gaussian component.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Shape</h3><p>It forms a bell-shaped curve around the mean.</p></article>
+              <article class="card"><h3>Parameters</h3><p>Each Gaussian has its own mean and covariance.</p></article>
+              <article class="card"><h3>Role</h3><p>It describes the probability of observing data near a certain region.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>GMM uses multiple Gaussian components to describe more complex data distributions.</span></div>
+          </section>
+
+          <section class="section-block" id="pdf">
+            <div class="section-heading">
+              <h2>Probability Density Function</h2>
+            </div>
+            <p>The probability density function gives the likelihood of observing a data point under a Gaussian component.</p>
+            <div class="formula-card">
+              <strong>PDF</strong>
+              <span>$$p(x) = \frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}} \exp\left(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\right)$$</span>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Meaning</h3><p>It quantifies how likely a point is under a given Gaussian.</p></article>
+              <article class="card"><h3>Use</h3><p>It is used in the E-step to estimate responsibilities.</p></article>
+              <article class="card"><h3>Importance</h3><p>It connects the model to the observed data.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The PDF is central to the probabilistic interpretation of GMM.</span></div>
+          </section>
+
+          <section class="section-block" id="hard-vs-soft">
+            <div class="section-heading">
+              <h2>Hard vs Soft Clustering</h2>
+            </div>
+            <p>Hard clustering assigns each point to one cluster, while soft clustering assigns a probability to each cluster. GMM uses soft clustering.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Hard Clustering</h3><p>Example: K-Means gives each point one label.</p></article>
+              <article class="card"><h3>Soft Clustering</h3><p>Example: GMM gives a probability of belonging to each component.</p></article>
+              <article class="card"><h3>Why It Matters</h3><p>Soft assignments are useful when cluster boundaries are uncertain.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Soft clustering allows uncertainty to be represented explicitly.</span></div>
+          </section>
+
+          <section class="section-block" id="mixing-coefficients">
+            <div class="section-heading">
+              <h2>Mixing Coefficients</h2>
+            </div>
+            <p>Mixing coefficients describe the prior probability of each Gaussian component. They determine how much each component contributes to the overall mixture.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Role</h3><p>They represent the expected proportion of data assigned to each component.</p></article>
+              <article class="card"><h3>Constraint</h3><p>They must sum to one across all components.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>They help explain the relative size of the clusters.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Mixing coefficients are updated during the EM process.</span></div>
+          </section>
+
+          <section class="section-block" id="covariance-matrix">
+            <div class="section-heading">
+              <h2>Covariance Matrix</h2>
+            </div>
+            <p>The covariance matrix describes how spread out a Gaussian component is and how its dimensions relate to each other. It allows GMM to model elliptical clusters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Shape Information</h3><p>It captures direction and spread of the cluster.</p></article>
+              <article class="card"><h3>Why It Matters</h3><p>Different covariance structures allow more expressive clustering.</p></article>
+              <article class="card"><h3>Comparison</h3><p>K-Means assumes spherical clusters, while GMM can model rotated and elongated structures.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Covariance estimation is one of the main reasons GMM is more flexible than K-Means.</span></div>
+          </section>
+
+          <section class="section-block" id="em-algorithm">
+            <div class="section-heading">
+              <h2>Expectation Maximization Algorithm</h2>
+            </div>
+            <p>The Expectation-Maximization algorithm is used to fit a GMM by iteratively estimating component responsibilities and updating model parameters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Purpose</h3><p>To find the best-fitting mixture of Gaussian distributions.</p></article>
+              <article class="card"><h3>Iteration</h3><p>It alternates between estimating hidden assignments and updating parameters.</p></article>
+              <article class="card"><h3>Outcome</h3><p>It produces a probabilistic clustering solution.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>EM is a general optimization technique and is central to fitting GMMs.</span></div>
+          </section>
+
+          <section class="section-block" id="expectation-step">
+            <div class="section-heading">
+              <h2>Expectation Step</h2>
+            </div>
+            <p>In the expectation step, the model computes the probability that each data point belongs to each Gaussian component.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Responsibility</h3><p>It estimates the contribution of each component to each point.</p></article>
+              <article class="card"><h3>Use</h3><p>These responsibilities guide the parameter update step.</p></article>
+              <article class="card"><h3>Meaning</h3><p>They represent soft cluster assignments.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The E-step is where uncertainty in cluster membership is estimated.</span></div>
+          </section>
+
+          <section class="section-block" id="maximization-step">
+            <div class="section-heading">
+              <h2>Maximization Step</h2>
+            </div>
+            <p>In the maximization step, the model updates the means, covariances, and mixing coefficients based on the responsibilities from the expectation step.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Parameter Update</h3><p>It finds parameter values that improve the likelihood of the data.</p></article>
+              <article class="card"><h3>Goal</h3><p>To increase the model’s fit to the observed data.</p></article>
+              <article class="card"><h3>Impact</h3><p>These updates make the mixture more representative of the dataset.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The M-step improves the model given the current soft assignments.</span></div>
+          </section>
+
+          <section class="section-block" id="working-process">
+            <div class="section-heading">
+              <h2>Working Process</h2>
+            </div>
+            <p>The GMM workflow alternates between estimating component memberships and refining component parameters until convergence is reached.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Initialize</h3><p>Start with an initial guess for the mixture parameters.</p></article>
+              <article class="card"><h3>Estimate</h3><p>Compute responsibilities for each point.</p></article>
+              <article class="card"><h3>Update</h3><p>Recalculate means, covariances, and weights.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The process continues until the likelihood stops improving significantly.</span></div>
+          </section>
+
+          <section class="section-block" id="formula">
+            <div class="section-heading">
+              <h2>Mathematical Formula</h2>
+            </div>
+            <p>GMM defines the data distribution as a weighted sum of Gaussian densities.</p>
+            <div class="formula-card">
+              <strong>Mixture Model</strong>
+              <span>$$p(x) = \sum_{j=1}^{K} \pi_j \mathcal{N}(x | \mu_j, \Sigma_j)$$</span>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Meaning</h3><p>Each data point is modeled as being generated by one of several Gaussian components.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>The weights determine the relative importance of different components.</p></article>
+              <article class="card"><h3>Role</h3><p>The model learns the best values for these parameters during training.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>This formula is the foundation of probabilistic clustering with GMMs.</span></div>
+          </section>
+
+          <section class="section-block" id="flow-diagram">
+            <div class="section-heading">
+              <h2>Flow Diagram</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>Data Input → Initialize GMM Parameters
+→ Compute Responsibilities → Update Means/Covariances/Weights
+→ Repeat Until Convergence → Soft Cluster Assignments</code></pre>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The flow emphasizes the iterative nature of the EM algorithm.</span></div>
+          </section>
+
+          <section class="section-block" id="architecture-diagram">
+            <div class="section-heading">
+              <h2>Architecture Diagram</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>Raw Dataset
+   ↓
+Preprocessing
+   ↓
+Initialize Mixture Components
+   ↓
+Expectation Step
+   ↓
+Maximization Step
+   ↓
+Final Probabilistic Clusters</code></pre>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>GMM architecture is more statistically rich than centroid-based clustering.</span></div>
+          </section>
+
+          <section class="section-block" id="working-example">
+            <div class="section-heading">
+              <h2>Working Example</h2>
+            </div>
+            <p>Suppose a dataset contains points from two overlapping populations. GMM assigns each point a probability of belonging to each cluster instead of forcing it into exactly one group.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Example Setup</h3><p>Two Gaussian components are used to model the data.</p></article>
+              <article class="card"><h3>Outcome</h3><p>Each point receives a soft membership score for each component.</p></article>
+              <article class="card"><h3>Insight</h3><p>This is especially helpful when boundaries between groups are not sharp.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>A worked example makes the soft assignment idea easier to understand.</span></div>
+          </section>
+
+          <section class="section-block" id="preprocessing">
+            <div class="section-heading">
+              <h2>Preprocessing</h2>
+            </div>
+            <p>Preprocessing is important for GMM because the model relies on distances and covariance estimates. Data should be prepared carefully to avoid unstable estimates.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Scaling</h3><p>Standardizes features so that one dimension does not dominate the covariance structure.</p></article>
+              <article class="card"><h3>Missing Values</h3><p>Missing values should be handled before estimation.</p></article>
+              <article class="card"><h3>Feature Selection</h3><p>Only relevant features should be included when possible.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Good preprocessing improves both convergence and interpretability.</span></div>
+          </section>
+
+          <section class="section-block" id="hyperparameters">
+            <div class="section-heading">
+              <h2>Hyperparameters</h2>
+            </div>
+            <p>GMM has several hyperparameters that influence the model fit, including the number of components and covariance settings.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Number of Components</h3><p>Controls how many Gaussian distributions are used.</p></article>
+              <article class="card"><h3>Covariance Type</h3><p>Determines how flexible the covariance structure is.</p></article>
+              <article class="card"><h3>Initialization</h3><p>Different starts can lead to different solutions.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Hyperparameter tuning is essential for practical GMM applications.</span></div>
+          </section>
+
+          <section class="section-block" id="evaluation-metrics">
+            <div class="section-heading">
+              <h2>Evaluation Metrics</h2>
+            </div>
+            <p>Evaluation metrics help determine whether a GMM provides a meaningful representation of the data. The choice of metric depends on whether the goal is clustering quality, density estimation, or interpretability.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Likelihood</h3><p>Measures how well the mixture explains the data.</p></article>
+              <article class="card"><h3>BIC</h3><p>Helps compare models with different numbers of components.</p></article>
+              <article class="card"><h3>Silhouette</h3><p>Can be used when hard labels are derived from probabilities.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Model selection should balance fit, complexity, and interpretability.</span></div>
+          </section>
+
+          <section class="section-block" id="advantages">
+            <div class="section-heading">
+              <h2>Advantages</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Probabilistic</h3><p>It captures uncertainty in cluster membership.</p></article>
+              <article class="card"><h3>Flexible</h3><p>It can model elliptical and overlapping clusters.</p></article>
+              <article class="card"><h3>Generative</h3><p>It can describe the distribution of the data.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These advantages make GMM particularly attractive for richer clustering tasks.</span></div>
+          </section>
+
+          <section class="section-block" id="limitations">
+            <div class="section-heading">
+              <h2>Limitations</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Requires More Computation</h3><p>EM can be slower than K-Means for large datasets.</p></article>
+              <article class="card"><h3> Sensitive to Initialization</h3><p>Different starts can lead to different solutions.</p></article>
+              <article class="card"><h3>Assumes Gaussian Components</h3><p>It may not fit data well when the underlying structure is very different.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>GMM works best when the data is reasonably well described by Gaussian components.</span></div>
+          </section>
+
+          <section class="section-block" id="applications">
+            <div class="section-heading">
+              <h2>Applications</h2>
+            </div>
+            <p>GMMs are used in many data-centric domains where probabilistic clustering is valuable.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Image Segmentation</h3><p>Model color or pixel distributions for segmentation tasks.</p></article>
+              <article class="card"><h3>Speech Processing</h3><p>Represent different sound patterns or speaker characteristics.</p></article>
+              <article class="card"><h3>Anomaly Detection</h3><p>Identify observations that do not fit the learned mixture well.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Probabilistic clustering is valuable wherever uncertainty matters.</span></div>
+          </section>
+
+          <section class="section-block" id="industry-use-cases">
+            <div class="section-heading">
+              <h2>Industry Use Cases</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Healthcare</h3><p>Model patient subgroups with overlapping physiological characteristics.</p></article>
+              <article class="card"><h3>Finance</h3><p>Estimate hidden structures in transaction and market behaviour.</p></article>
+              <article class="card"><h3>Marketing</h3><p>Identify soft customer segments with mixed preferences.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Industry use cases often benefit from the probabilistic interpretation of GMM.</span></div>
+          </section>
+
+          <section class="section-block" id="case-study">
+            <div class="section-heading">
+              <h2>Case Study</h2>
+            </div>
+            <p>A marketing team may use GMM to understand customer purchase behavior when several audience groups overlap. Instead of hard labels, the model provides probabilities that a customer belongs to each segment.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Problem</h3><p>Discover overlapping customer segments from behavioral data.</p></article>
+              <article class="card"><h3>Approach</h3><p>Fit a Gaussian mixture model and inspect component responsibilities.</p></article>
+              <article class="card"><h3>Outcome</h3><p>Use probabilistic segments to design tailored campaigns.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Case studies show why soft clustering can be useful in real-world analysis.</span></div>
+          </section>
+
+          <section class="section-block" id="comparison-kmeans">
+            <div class="section-heading">
+              <h2>Comparison with K-Means</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Aspect</th><th>GMM</th><th>K-Means</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Clustering Type</td><td>Soft</td><td>Hard</td></tr>
+                  <tr><td>Cluster Shape</td><td>Elliptical and flexible</td><td>Mostly spherical</td></tr>
+                  <tr><td>Probability</td><td>Provides membership probabilities</td><td>Provides single labels</td></tr>
+                  <tr><td>Computation</td><td>More expensive</td><td>Faster</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>GMM is often chosen when cluster uncertainty and shape flexibility matter more than speed.</span></div>
+          </section>
+
+          <section class="section-block" id="implementation-overview">
+            <div class="section-heading">
+              <h2>Implementation Overview</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>from sklearn.mixture import GaussianMixture
+model = GaussianMixture(n_components=3, random_state=42)
+labels = model.fit_predict(X_scaled)</code></pre>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Library Support</h3><p>Scikit-learn provides a robust GMM implementation.</p></article>
+              <article class="card"><h3>Workflow</h3><p>Scale the data, fit the mixture model, and inspect the resulting responsibilities.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>Examine means, covariances, and estimated component weights.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Implementation is straightforward, but interpretation requires care.</span></div>
+          </section>
+
+          <section class="section-block" id="interview-questions">
+            <div class="section-heading">
+              <h2>Interview Questions</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Question 1</h3><p>How does GMM differ from K-Means in terms of cluster assignment?</p></article>
+              <article class="card"><h3>Question 2</h3><p>What is the role of the covariance matrix in a GMM?</p></article>
+              <article class="card"><h3>Question 3</h3><p>Why is the EM algorithm important for GMM?</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These questions are useful for technical interviews and assignments.</span></div>
+          </section>
+
+          <section class="section-block" id="faq">
+            <div class="section-heading">
+              <h2>FAQ</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Is GMM supervised?</h3><p>No. It is an unsupervised probabilistic clustering method.</p></article>
+              <article class="card"><h3>Can GMM model overlapping clusters?</h3><p>Yes. It is designed to handle soft and overlapping cluster membership.</p></article>
+              <article class="card"><h3>What is the difference between GMM and K-Means?</h3><p>GMM uses probability distributions and soft assignments, while K-Means uses centroids and hard assignments.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>FAQs help readers quickly resolve common conceptual questions.</span></div>
+          </section>
+
+          <section class="section-block" id="summary">
+            <div class="section-heading">
+              <h2>Summary</h2>
+            </div>
+            <p>Gaussian Mixture Models are powerful probabilistic clustering tools that support soft assignments and flexible cluster shapes. They are especially useful when data is generated from overlapping or non-spherical structures.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Key Takeaway</h3><p>GMM models data as a mixture of Gaussian components.</p></article>
+              <article class="card"><h3>Best Use</h3><p>It is ideal for probabilistic clustering and uncertainty-aware analysis.</p></article>
+              <article class="card"><h3>Next Step</h3><p>Explore other clustering methods to compare their behavior and assumptions.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Understanding GMM provides a strong bridge to more advanced probabilistic learning methods.</span></div>
+          </section>
+
+          <section class="section-block" id="references">
+            <div class="section-heading">
+              <h2>References</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Reference</th><th>Type</th><th>Use</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Scikit-learn Gaussian Mixture Documentation</td><td>Reference</td><td>Official API and explanation</td></tr>
+                  <tr><td>Microsoft Learn ML Modules</td><td>Educational</td><td>Foundational machine learning concepts</td></tr>
+                  <tr><td>TensorFlow Probability Guides</td><td>Educational</td><td>Probabilistic modeling concepts</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Further reading helps deepen understanding of probabilistic clustering.</span></div>
+          </section>
+
+          <div class="pagination">
+            <a class="btn btn-secondary" href="../kmeans/index.html">← Previous</a>
+            <a class="btn btn-primary" href="../dbscan/index.html">Next →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 AI/ML Internship</span>
+      <span>Unsupervised Learning: Clustering</span>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

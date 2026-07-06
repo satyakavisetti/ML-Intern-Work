@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unsupervised Learning: Clustering</title>
+    <meta name="theme-color" content="#060b16" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <div class="reading-progress"></div>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">UL</span>
+        <span>Unsupervised Learning</span>
+      </a>
+      <div class="topbar-actions">
+        <label class="search-wrapper">
+          <span>🔎</span>
+          <input type="search" placeholder="Search topics" data-search-input />
+        </label>
+        <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>Clustering Guide</h2>
+          <p>Structured learning path</p>
+        </div>
+        <nav class="sidebar-nav" aria-label="Documentation navigation">
+          <a class="sidebar-link" href="../index.html">Home</a>
+          <a class="sidebar-link" href="../introduction/index.html">Introduction</a>
+          <a class="sidebar-link" href="../kmeans/index.html">K-Means</a>
+          <a class="sidebar-link" href="../gmm/index.html">Gaussian Mixture Models</a>
+          <a class="sidebar-link" href="../dbscan/index.html">DBSCAN</a>
+          <a class="sidebar-link" href="../hierarchical/index.html">Hierarchical Clustering</a>
+          <a class="sidebar-link" href="../comparison.html">Comparison</a>
+          <a class="sidebar-link" href="../references.html">References</a>
+        </nav>
+      </aside>
+
+      <main class="content-area">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <span>Section</span>
+        </nav>
+
+        <div class="doc-content">
+          <section class="hero">
+            <p class="eyebrow">Documentation</p>
+            <h1>Section Title</h1>
+            <p>Reusable layout placeholder for the clustering documentation site.</p>
+          </section>
+
+          <section class="section-block">
+            <div class="section-heading">
+              <h2>Cards</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card">
+                <h3>Card One</h3>
+                <p>Reusable content card.</p>
+              </article>
+              <article class="card">
+                <h3>Card Two</h3>
+                <p>Reusable content card.</p>
+              </article>
+              <article class="card">
+                <h3>Card Three</h3>
+                <p>Reusable content card.</p>
+              </article>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="section-heading">
+              <h2>Tables</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Method</th><th>Use Case</th><th>Strength</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>K-Means</td><td>Flat partitions</td><td>Fast and simple</td></tr>
+                  <tr><td>GMM</td><td>Soft clustering</td><td>Probabilistic assignments</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="section-block">
+            <div class="section-heading">
+              <h2>Code and Formulas</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>def kmeans(data, k):
+    ...</code></pre>
+            </div>
+            <div class="formula-card">
+              <strong>Formula</strong>
+              <span>Within-cluster sum of squares: $\sum_i ||x_i - \mu_{c(i)}||^2$</span>
+            </div>
+            <div class="note-box">
+              <strong>Note</strong>
+              <span>This is a reusable note container.</span>
+            </div>
+            <div class="warning-box">
+              <strong>Warning</strong>
+              <span>This is a reusable warning container.</span>
+            </div>
+            <div class="tip-box">
+              <strong>Interview Tip</strong>
+              <span>This is a reusable tip container.</span>
+            </div>
+          </section>
+
+          <div class="pagination">
+            <a class="btn btn-secondary" href="../index.html">← Previous</a>
+            <a class="btn btn-primary" href="../comparison.html">Next →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 AI/ML Internship</span>
+      <span>Unsupervised Learning: Clustering</span>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+    <script src="../js/main.js"></script>
+  </body>
+</html>

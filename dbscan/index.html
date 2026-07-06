@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DBSCAN | Unsupervised Learning</title>
+    <meta name="theme-color" content="#060b16" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <div class="reading-progress"></div>
+    <header class="topbar">
+      <a class="brand" href="../index.html">
+        <span class="brand-mark">UL</span>
+        <span>Unsupervised Learning</span>
+      </a>
+      <div class="topbar-actions">
+        <label class="search-wrapper">
+          <span>🔎</span>
+          <input type="search" placeholder="Search topics" data-search-input />
+          <div class="search-results" aria-live="polite"></div>
+        </label>
+        <button class="mobile-toggle" aria-label="Toggle navigation">☰</button>
+        <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">🌙</button>
+      </div>
+    </header>
+
+    <div class="overlay"></div>
+
+    <div class="page-shell">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>DBSCAN Guide</h2>
+          <p>Structured study map</p>
+        </div>
+        <nav class="sidebar-nav" aria-label="DBSCAN navigation">
+          <a class="sidebar-link" href="#overview">Overview</a>
+          <a class="sidebar-link" href="#definition">Definition</a>
+          <a class="sidebar-link" href="#introduction">Introduction</a>
+          <a class="sidebar-link" href="#why-dbscan">Why DBSCAN</a>
+          <a class="sidebar-link" href="#history">History</a>
+          <a class="sidebar-link" href="#density-based-clustering">Density Based Clustering</a>
+          <a class="sidebar-link" href="#core-point">Core Point</a>
+          <a class="sidebar-link" href="#border-point">Border Point</a>
+          <a class="sidebar-link" href="#noise-point">Noise Point</a>
+          <a class="sidebar-link" href="#epsilon">Epsilon</a>
+          <a class="sidebar-link" href="#minpts">MinPts</a>
+          <a class="sidebar-link" href="#density-reachability">Density Reachability</a>
+          <a class="sidebar-link" href="#density-connectivity">Density Connectivity</a>
+          <a class="sidebar-link" href="#working-process">Working Process</a>
+          <a class="sidebar-link" href="#formula">Mathematical Formula</a>
+          <a class="sidebar-link" href="#flow-diagram">Flow Diagram</a>
+          <a class="sidebar-link" href="#architecture-diagram">Architecture Diagram</a>
+          <a class="sidebar-link" href="#working-example">Working Example</a>
+          <a class="sidebar-link" href="#hdbscan">HDBSCAN</a>
+          <a class="sidebar-link" href="#difference-hdbscan">Difference Between DBSCAN and HDBSCAN</a>
+          <a class="sidebar-link" href="#preprocessing">Preprocessing</a>
+          <a class="sidebar-link" href="#hyperparameters">Hyperparameters</a>
+          <a class="sidebar-link" href="#evaluation-metrics">Evaluation Metrics</a>
+          <a class="sidebar-link" href="#advantages">Advantages</a>
+          <a class="sidebar-link" href="#limitations">Limitations</a>
+          <a class="sidebar-link" href="#applications">Applications</a>
+          <a class="sidebar-link" href="#industry-use-cases">Industry Use Cases</a>
+          <a class="sidebar-link" href="#case-study">Case Study</a>
+          <a class="sidebar-link" href="#implementation-overview">Implementation Overview</a>
+          <a class="sidebar-link" href="#interview-questions">Interview Questions</a>
+          <a class="sidebar-link" href="#faq">FAQ</a>
+          <a class="sidebar-link" href="#summary">Summary</a>
+          <a class="sidebar-link" href="#references">References</a>
+        </nav>
+      </aside>
+
+      <main class="content-area" id="main-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="../index.html">Home</a>
+          <span>/</span>
+          <span>Introduction</span>
+          <span>/</span>
+          <span>DBSCAN</span>
+        </nav>
+
+        <div class="doc-content">
+          <section class="hero" id="overview">
+            <p class="eyebrow">Algorithm Guide</p>
+            <h1>DBSCAN</h1>
+            <p>DBSCAN is a density-based clustering algorithm that discovers groups of points based on local density rather than assuming a fixed number of clusters. It is especially useful for irregular shapes and noisy data.</p>
+          </section>
+
+          <section class="section-block" id="definition">
+            <div class="section-heading">
+              <h2>Definition</h2>
+            </div>
+            <p>DBSCAN stands for Density-Based Spatial Clustering of Applications with Noise. It finds clusters by grouping points that are closely packed together and marking points in sparse areas as noise.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Core Idea</h3><p>It identifies dense regions in the data and expands clusters from them.</p></article>
+              <article class="card"><h3>Nature</h3><p>It does not require the number of clusters to be specified in advance.</p></article>
+              <article class="card"><h3>Common Use</h3><p>It is suitable for spatial data, geolocation data, and irregularly shaped clusters.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN is particularly useful when the number of clusters is unknown and noise is present.</span></div>
+          </section>
+
+          <section class="section-block" id="introduction">
+            <div class="section-heading">
+              <h2>Introduction</h2>
+            </div>
+            <p>Unlike centroid-based methods, DBSCAN builds clusters from dense neighborhoods. This makes it a good choice when the data contains clusters with arbitrary shapes.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Why It Matters</h3><p>It naturally handles clusters that are not well represented by simple spherical assumptions.</p></article>
+              <article class="card"><h3>Learning Goal</h3><p>It introduces the idea of clustering based on density rather than distance to a center.</p></article>
+              <article class="card"><h3>Practical Context</h3><p>It is often used in spatial analytics, anomaly detection, and pattern discovery.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN is often preferred when the structure of the data is irregular or noisy.</span></div>
+          </section>
+
+          <section class="section-block" id="why-dbscan">
+            <div class="section-heading">
+              <h2>Why DBSCAN</h2>
+            </div>
+            <p>DBSCAN is attractive because it can discover clusters of arbitrary shape and automatically identify outliers. It removes the need to predefine the number of clusters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Flexible</h3><p>It can detect non-spherical structures.</p></article>
+              <article class="card"><h3>Noise-Aware</h3><p>It explicitly separates noise from meaningful clusters.</p></article>
+              <article class="card"><h3>Independent of k</h3><p>No need to specify the number of clusters in advance.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Its ability to detect noise makes it useful in real-world datasets with outliers.</span></div>
+          </section>
+
+          <section class="section-block" id="history">
+            <div class="section-heading">
+              <h2>History</h2>
+            </div>
+            <p>DBSCAN was introduced as a density-based alternative to partitioning methods. Its development helped shift clustering practice toward methods that can handle arbitrary shapes and noisy data.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Early Development</h3><p>It became a foundational method in density-based clustering.</p></article>
+              <article class="card"><h3>Modern Adoption</h3><p>It remains widely used in spatial and exploratory analysis.</p></article>
+              <article class="card"><h3>Legacy</h3><p>It influenced later algorithms such as HDBSCAN and OPTICS.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN helped establish density-based clustering as a major paradigm in unsupervised learning.</span></div>
+          </section>
+
+          <section class="section-block" id="density-based-clustering">
+            <div class="section-heading">
+              <h2>Density Based Clustering</h2>
+            </div>
+            <p>Density-based clustering groups points that are densely connected, meaning they have enough nearby points around them. It is different from centroid-based clustering, which assumes representative centers.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Dense Regions</h3><p>Clusters form around areas where points are close together.</p></article>
+              <article class="card"><h3>Sparse Regions</h3><p>Low-density areas are treated as noise or boundaries.</p></article>
+              <article class="card"><h3>Shape Flexibility</h3><p>It can discover clusters that are long, curved, or intertwined.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Density-based clustering is especially useful when clusters are not simple blobs.</span></div>
+          </section>
+
+          <section class="section-block" id="core-point">
+            <div class="section-heading">
+              <h2>Core Point</h2>
+            </div>
+            <p>A core point is a point that has at least MinPts points within its neighborhood of radius Epsilon. These points are the foundation of a cluster.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Role</h3><p>Core points connect other nearby points into the same cluster.</p></article>
+              <article class="card"><h3>Example</h3><p>A point in the middle of a dense region is likely to be a core point.</p></article>
+              <article class="card"><h3>Impact</h3><p>They define the density structure of the cluster.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Core points are the main building blocks of DBSCAN clusters.</span></div>
+          </section>
+
+          <section class="section-block" id="border-point">
+            <div class="section-heading">
+              <h2>Border Point</h2>
+            </div>
+            <p>A border point is near a cluster but does not have enough neighbors to be a core point on its own. It is assigned to a cluster through a nearby core point.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Role</h3><p>Border points help define the edge of a cluster.</p></article>
+              <article class="card"><h3>Difference</h3><p>They are less dense than core points and depend on them for membership.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>They often appear near the boundary of a dense region.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Border points are important for capturing the shape of a cluster at its edge.</span></div>
+          </section>
+
+          <section class="section-block" id="noise-point">
+            <div class="section-heading">
+              <h2>Noise Point</h2>
+            </div>
+            <p>A noise point lies in a low-density region and does not meet the density requirements to be part of a cluster. DBSCAN marks it as noise rather than forcing it into a group.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Meaning</h3><p>It usually represents an outlier or sparse region.</p></article>
+              <article class="card"><h3>Behavior</h3><p>It is left unassigned unless it becomes reachable from a dense region.</p></article>
+              <article class="card"><h3>Value</h3><p>It helps identify unusual or isolated observations.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Noise detection is one of DBSCAN’s strongest practical features.</span></div>
+          </section>
+
+          <section class="section-block" id="epsilon">
+            <div class="section-heading">
+              <h2>Epsilon</h2>
+            </div>
+            <p>Epsilon, often written as $\varepsilon$, defines the radius of the neighborhood around a point. It controls how far DBSCAN looks for nearby points.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Role</h3><p>It sets the reachability scale for local density.</p></article>
+              <article class="card"><h3>Effect</h3><p>A large value merges nearby groups, while a small value creates more fragmented clusters.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>It acts like the scale of the local neighborhood.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Choosing epsilon carefully is critical because it directly affects cluster formation.</span></div>
+          </section>
+
+          <section class="section-block" id="minpts">
+            <div class="section-heading">
+              <h2>MinPts</h2>
+            </div>
+            <p>MinPts is the minimum number of points required in a neighborhood for a point to be considered a core point. It controls the minimum density required to form a cluster.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Role</h3><p>It protects against forming clusters from very sparse regions.</p></article>
+              <article class="card"><h3>Effect</h3><p>Higher values require denser regions and often produce fewer clusters.</p></article>
+              <article class="card"><h3>Practical Tip</h3><p>It should be chosen with the dataset size and expected cluster density in mind.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>MinPts and epsilon often need to be tuned together.</span></div>
+          </section>
+
+          <section class="section-block" id="density-reachability">
+            <div class="section-heading">
+              <h2>Density Reachability</h2>
+            </div>
+            <p>Density reachability describes whether a point can be reached from another point through a chain of density-connected points. It is used to extend clusters from core points.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Meaning</h3><p>It captures whether points are connected through dense neighborhoods.</p></article>
+              <article class="card"><h3>Use</h3><p>It defines cluster expansion in the algorithm.</p></article>
+              <article class="card"><h3>Insight</h3><p>It explains why DBSCAN can connect points in a flexible way.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Density reachability is central to how DBSCAN grows clusters.</span></div>
+          </section>
+
+          <section class="section-block" id="density-connectivity">
+            <div class="section-heading">
+              <h2>Density Connectivity</h2>
+            </div>
+            <p>Density connectivity describes the relationship between two points when they are connected through a sequence of density-reachable points. It is a stronger notion than simple proximity.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Meaning</h3><p>It measures whether two points belong to the same dense region.</p></article>
+              <article class="card"><h3>Use</h3><p>It helps justify why points in different local neighborhoods can still belong to the same cluster.</p></article>
+              <article class="card"><h3>Value</h3><p>It supports the algorithm’s flexibility across irregular shapes.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These connectivity concepts explain why DBSCAN can discover non-convex structures.</span></div>
+          </section>
+
+          <section class="section-block" id="working-process">
+            <div class="section-heading">
+              <h2>Working Process</h2>
+            </div>
+            <p>DBSCAN repeatedly examines points, identifies core points, and expands clusters by connecting density-reachable neighboring points.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Initialize</h3><p>Choose a point that has not been visited.</p></article>
+              <article class="card"><h3>Discover Neighborhood</h3><p>Check all points within epsilon distance.</p></article>
+              <article class="card"><h3>Expand Cluster</h3><p>Grow the cluster from core points and their reachable neighbors.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The algorithm stops once every point has been processed.</span></div>
+          </section>
+
+          <section class="section-block" id="formula">
+            <div class="section-heading">
+              <h2>Mathematical Formula</h2>
+            </div>
+            <p>The core condition in DBSCAN is based on neighborhood density. A point is a core point if its epsilon-neighborhood contains at least MinPts points.</p>
+            <div class="formula-card">
+              <strong>Neighborhood Condition</strong>
+              <span>$$N_\varepsilon(p) = \{q \mid d(p,q) \leq \varepsilon\}$$</span>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Meaning</h3><p>The neighborhood defines the local environment of a point.</p></article>
+              <article class="card"><h3>Criterion</h3><p>A point is a core point if $|N_\varepsilon(p)| \geq \text{MinPts}$.</p></article>
+              <article class="card"><h3>Use</h3><p>This condition drives cluster formation and noise detection.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These simple rules make DBSCAN powerful despite its conceptual simplicity.</span></div>
+          </section>
+
+          <section class="section-block" id="flow-diagram">
+            <div class="section-heading">
+              <h2>Flow Diagram</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>Pick Unvisited Point → Find Neighborhood
+→ If Dense: Start Cluster → Expand via Reachability
+→ Else: Mark as Noise/Border → Continue</code></pre>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The flow is easy to describe and implement in practice.</span></div>
+          </section>
+
+          <section class="section-block" id="architecture-diagram">
+            <div class="section-heading">
+              <h2>Architecture Diagram</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>Raw Data
+   ↓
+Compute Neighborhoods
+   ↓
+Identify Core / Border / Noise Points
+   ↓
+Expand Dense Clusters
+   ↓
+Final Clustering Output</code></pre>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>The architecture stresses local density and connectivity rather than centroid updates.</span></div>
+          </section>
+
+          <section class="section-block" id="working-example">
+            <div class="section-heading">
+              <h2>Working Example</h2>
+            </div>
+            <p>Imagine a set of points that forms a curved cluster in the middle of sparse space. DBSCAN identifies the dense region, expands from a core point, and labels isolated points as noise.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Example Setup</h3><p>A dense curved group is surrounded by sparse observations.</p></article>
+              <article class="card"><h3>Outcome</h3><p>One cluster is formed from the dense region while the sparse points are marked as noise.</p></article>
+              <article class="card"><h3>Insight</h3><p>This illustrates DBSCAN’s ability to discover non-spherical clusters.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN is especially intuitive when the data includes irregular shapes and outliers.</span></div>
+          </section>
+
+          <section class="section-block" id="hdbscan">
+            <div class="section-heading">
+              <h2>HDBSCAN</h2>
+            </div>
+            <p>HDBSCAN extends DBSCAN by building a hierarchy of clusters and selecting the most stable ones. It is often used when cluster density varies across the dataset.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Key Idea</h3><p>It examines clusters across a range of density scales.</p></article>
+              <article class="card"><h3>Strength</h3><p>It can find clusters with varying densities more gracefully than DBSCAN.</p></article>
+              <article class="card"><h3>Relation</h3><p>It is a natural successor to DBSCAN in many practical applications.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>HDBSCAN is often more robust when cluster densities differ significantly.</span></div>
+          </section>
+
+          <section class="section-block" id="difference-hdbscan">
+            <div class="section-heading">
+              <h2>Difference Between DBSCAN and HDBSCAN</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Aspect</th><th>DBSCAN</th><th>HDBSCAN</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Cluster Shape</td><td>Arbitrary</td><td>Arbitrary</td></tr>
+                  <tr><td>Density Handling</td><td>Single scale</td><td>Multiple scales</td></tr>
+                  <tr><td>Parameter Sensitivity</td><td>High</td><td>Lower</td></tr>
+                  <tr><td>Output</td><td>Flat clusters</td><td>Hierarchical structure</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>HDBSCAN often provides a more flexible and stable solution for complex datasets.</span></div>
+          </section>
+
+          <section class="section-block" id="preprocessing">
+            <div class="section-heading">
+              <h2>Preprocessing</h2>
+            </div>
+            <p>Preprocessing is important for DBSCAN because the algorithm depends on distance-based neighborhoods. Feature scaling and noise screening are especially important.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Scaling</h3><p>Standardize features so distance is measured fairly across dimensions.</p></article>
+              <article class="card"><h3>Outlier Review</h3><p>Understand whether rare points are meaningful or should be treated as noise.</p></article>
+              <article class="card"><h3>Feature Selection</h3><p>Remove irrelevant dimensions to avoid distortions in density estimates.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN is highly sensitive to the scale of the features.</span></div>
+          </section>
+
+          <section class="section-block" id="hyperparameters">
+            <div class="section-heading">
+              <h2>Hyperparameters</h2>
+            </div>
+            <p>The most important hyperparameters in DBSCAN are epsilon and MinPts. These control how dense a region must be to be considered a cluster.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Epsilon</h3><p>Sets the neighborhood radius.</p></article>
+              <article class="card"><h3>MinPts</h3><p>Sets the minimum number of points needed within a neighborhood.</p></article>
+              <article class="card"><h3>Distance Metric</h3><p>Determines how proximity is measured.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Parameter tuning is one of the most important parts of using DBSCAN effectively.</span></div>
+          </section>
+
+          <section class="section-block" id="evaluation-metrics">
+            <div class="section-heading">
+              <h2>Evaluation Metrics</h2>
+            </div>
+            <p>DBSCAN can be evaluated using metrics that measure separation, compactness, and stability. Since noise points may be present, evaluation should consider the behavior of outliers as well.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Silhouette</h3><p>Useful when comparing cluster quality across parameter settings.</p></article>
+              <article class="card"><h3>Noise Ratio</h3><p>Measures how much of the data is marked as noise.</p></article>
+              <article class="card"><h3>Cluster Stability</h3><p>Helps assess whether the clustering result is robust.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Evaluation should include both clustering quality and noise handling.</span></div>
+          </section>
+
+          <section class="section-block" id="advantages">
+            <div class="section-heading">
+              <h2>Advantages</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Shape Flexibility</h3><p>It can find arbitrarily shaped clusters.</p></article>
+              <article class="card"><h3>No Need for k</h3><p>It does not require the number of clusters to be known a priori.</p></article>
+              <article class="card"><h3>Noise Detection</h3><p>It explicitly identifies outliers and sparse regions.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These strengths make DBSCAN valuable in exploratory data analysis.</span></div>
+          </section>
+
+          <section class="section-block" id="limitations">
+            <div class="section-heading">
+              <h2>Limitations</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Parameter Sensitivity</h3><p>It can be sensitive to epsilon and MinPts.</p></article>
+              <article class="card"><h3>Struggles with Varying Density</h3><p>A single parameter setting may not work well for all clusters.</p></article>
+              <article class="card"><h3>High-Dimensional Data</h3><p>Distance-based density can become less meaningful in very high dimensions.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN is powerful, but it needs careful tuning and feature preparation.</span></div>
+          </section>
+
+          <section class="section-block" id="applications">
+            <div class="section-heading">
+              <h2>Applications</h2>
+            </div>
+            <p>DBSCAN is widely used in applications where clusters have irregular shapes or where noise detection matters.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Geospatial Analysis</h3><p>Detect dense regions in location-based data.</p></article>
+              <article class="card"><h3>Fraud Detection</h3><p>Highlight unusual transaction groups or outliers.</p></article>
+              <article class="card"><h3>Image Grouping</h3><p>Group pixels or regions based on local similarity.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>It is especially relevant in domains where outliers are meaningful and should not be merged into clusters.</span></div>
+          </section>
+
+          <section class="section-block" id="industry-use-cases">
+            <div class="section-heading">
+              <h2>Industry Use Cases</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Transportation</h3><p>Cluster pickup and drop-off behavior across cities.</p></article>
+              <article class="card"><h3>Retail</h3><p>Find dense customer locations or behavioral hotspots.</p></article>
+              <article class="card"><h3>Security</h3><p>Identify unusual activity patterns and suspicious clusters.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN often produces actionable insight in spatial and behavioral analysis.</span></div>
+          </section>
+
+          <section class="section-block" id="case-study">
+            <div class="section-heading">
+              <h2>Case Study</h2>
+            </div>
+            <p>A city transportation team may use DBSCAN to identify crowded pickup zones and low-density areas. The algorithm can reveal dense clusters of activity while flagging isolated behavior as noise.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Problem</h3><p>Find meaningful groups of travel activity in noisy movement data.</p></article>
+              <article class="card"><h3>Approach</h3><p>Use DBSCAN to detect dense clusters and outliers.</p></article>
+              <article class="card"><h3>Outcome</h3><p>Highlight high-activity regions and unusual movement patterns.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Case studies show how density-based clustering supports real-world decisions.</span></div>
+          </section>
+
+          <section class="section-block" id="implementation-overview">
+            <div class="section-heading">
+              <h2>Implementation Overview</h2>
+            </div>
+            <div class="code-block">
+              <pre><code>from sklearn.cluster import DBSCAN
+model = DBSCAN(eps=0.5, min_samples=5)
+labels = model.fit_predict(X_scaled)</code></pre>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Library Support</h3><p>Scikit-learn provides a simple DBSCAN implementation.</p></article>
+              <article class="card"><h3>Workflow</h3><p>Scale the data, choose epsilon and MinPts, and inspect the resulting labels.</p></article>
+              <article class="card"><h3>Interpretation</h3><p>Review which points are assigned to clusters and which are labeled as noise.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>Implementation is straightforward, but parameter choices should be tested carefully.</span></div>
+          </section>
+
+          <section class="section-block" id="interview-questions">
+            <div class="section-heading">
+              <h2>Interview Questions</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Question 1</h3><p>What is the difference between a core point and a border point?</p></article>
+              <article class="card"><h3>Question 2</h3><p>Why is DBSCAN useful for noisy datasets?</p></article>
+              <article class="card"><h3>Question 3</h3><p>How do epsilon and MinPts affect the clustering result?</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>These questions are common in interviews and practical discussions.</span></div>
+          </section>
+
+          <section class="section-block" id="faq">
+            <div class="section-heading">
+              <h2>FAQ</h2>
+            </div>
+            <div class="card-grid">
+              <article class="card"><h3>Is DBSCAN supervised?</h3><p>No. It is an unsupervised density-based method.</p></article>
+              <article class="card"><h3>Can DBSCAN handle arbitrary shapes?</h3><p>Yes. It is designed for non-spherical and irregular clusters.</p></article>
+              <article class="card"><h3>What happens to noise points?</h3><p>They are marked as noise rather than assigned to a cluster.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>FAQs help readers quickly resolve common conceptual doubts.</span></div>
+          </section>
+
+          <section class="section-block" id="summary">
+            <div class="section-heading">
+              <h2>Summary</h2>
+            </div>
+            <p>DBSCAN is a robust and interpretable density-based clustering algorithm that can discover irregular clusters and identify noise. It is often chosen when the number of clusters is unknown and outliers are important to detect.</p>
+            <div class="card-grid">
+              <article class="card"><h3>Key Takeaway</h3><p>DBSCAN groups points based on local density and connectivity.</p></article>
+              <article class="card"><h3>Best Use</h3><p>It is ideal for irregular cluster shapes and noisy data.</p></article>
+              <article class="card"><h3>Next Step</h3><p>Explore HDBSCAN and hierarchical methods for more advanced density-based analysis.</p></article>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>DBSCAN provides a strong foundation for learning more advanced clustering methods.</span></div>
+          </section>
+
+          <section class="section-block" id="references">
+            <div class="section-heading">
+              <h2>References</h2>
+            </div>
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr><th>Reference</th><th>Type</th><th>Use</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Scikit-learn DBSCAN Documentation</td><td>Reference</td><td>Official API and explanation</td></tr>
+                  <tr><td>Microsoft Learn ML Modules</td><td>Educational</td><td>Foundational clustering concepts</td></tr>
+                  <tr><td>HDBSCAN Documentation</td><td>Reference</td><td>Advanced density-based clustering</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="note-box"><strong>Note</strong><span>References help support deeper study of density-based clustering methods.</span></div>
+          </section>
+
+          <div class="pagination">
+            <a class="btn btn-secondary" href="../gmm/index.html">← Previous</a>
+            <a class="btn btn-primary" href="../hierarchical/index.html">Next →</a>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <footer class="site-footer">
+      <span>© 2026 AI/ML Internship</span>
+      <span>Unsupervised Learning: Clustering</span>
+    </footer>
+
+    <button class="scroll-top" aria-label="Scroll to top">↑</button>
+    <script src="../js/main.js"></script>
+  </body>
+</html>
