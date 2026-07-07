@@ -90,7 +90,12 @@
           <section class="hero" id="overview">
             <p class="eyebrow">Algorithm Guide</p>
             <h1>K-Means Clustering</h1>
-            <p>K-Means is one of the most widely taught clustering algorithms because it is simple, efficient, and intuitive. This page provides a complete conceptual overview that can be used for study, presentations, and interviews.</p>
+            <p>K-Means is one of the most widely used unsupervised learning algorithms because it groups similar data points into meaningful clusters using centroids. This page presents the concept in a clear, study-friendly form for beginners and interview preparation.</p>
+            <div class="card-grid">
+              <article class="card"><h3>What You Will Learn</h3><p>Understand clustering, the K-Means workflow, the role of centroids, and how to evaluate the quality of clusters.</p></article>
+              <article class="card"><h3>Why It Matters</h3><p>It helps discover hidden patterns in unlabeled data and is widely used in segmentation and analytics.</p></article>
+              <article class="card"><h3>Practical Goal</h3><p>Learn how K-Means works step by step and when it is a suitable choice for real datasets.</p></article>
+            </div>
           </section>
 
           <section class="section-block" id="definition">
@@ -101,7 +106,7 @@
             <div class="card-grid">
               <article class="card"><h3>Core Idea</h3><p>It places cluster centers at locations that best represent the data assigned to them.</p></article>
               <article class="card"><h3>Nature</h3><p>It is simple, fast, and works well when clusters are roughly spherical and similar in size.</p></article>
-              <article class="card"><h3>Common Use</h3><p>It is often used in customer segmentation, document grouping, and image compression.</p></article>
+              <article class="card"><h3>Common Use</h3><p>It is commonly used in customer segmentation, document clustering, and image compression.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>K-Means requires the number of clusters, $k$, to be specified in advance.</span></div>
           </section>
@@ -110,36 +115,37 @@
             <div class="section-heading">
               <h2>Introduction</h2>
             </div>
-            <p>K-Means is usually introduced as the first clustering algorithm because it demonstrates the basic idea of grouping data by similarity. It remains a strong baseline for many real-world clustering problems.</p>
+            <p>Machine Learning is divided into supervised, unsupervised, and reinforcement learning. K-Means belongs to unsupervised learning because it works with data that has no labels. Instead of predicting outputs, it discovers natural groups that already exist in the data.</p>
+            <p>Imagine a company that knows the age, income, and spending habits of thousands of customers but does not know which customers belong to similar groups. K-Means can automatically organize them into clusters so the business can design targeted campaigns and recommendations.</p>
             <div class="card-grid">
-              <article class="card"><h3>Why Students Learn It First</h3><p>It offers a straightforward intuition for partition-based clustering.</p></article>
-              <article class="card"><h3>Why Practitioners Use It</h3><p>It is computationally efficient and easy to explain to non-technical audiences.</p></article>
-              <article class="card"><h3>What It Teaches</h3><p>It illustrates the role of distance, centroids, and iterative refinement.</p></article>
+              <article class="card"><h3>Why Students Learn It First</h3><p>It gives a simple intuition for grouping data by similarity without requiring labels.</p></article>
+              <article class="card"><h3>Why Practitioners Use It</h3><p>It is computationally efficient, easy to explain, and useful as a baseline model.</p></article>
+              <article class="card"><h3>What It Teaches</h3><p>It illustrates the role of distance, centroids, and iterative refinement in unsupervised learning.</p></article>
             </div>
-            <div class="note-box"><strong>Note</strong><span>Although simple, K-Means should not be applied blindly without checking whether its assumptions fit the data.</span></div>
+            <div class="note-box"><strong>Note</strong><span>Although simple, K-Means should be applied carefully and its assumptions should be checked before use.</span></div>
           </section>
 
           <section class="section-block" id="why-kmeans">
             <div class="section-heading">
               <h2>Why K-Means</h2>
             </div>
-            <p>A major reason for K-Means popularity is its balance between interpretability and scalability. It can cluster large datasets faster than many other algorithms while preserving explainable results.</p>
+            <p>A major reason for K-Means popularity is its balance between interpretability and scalability. It can cluster large datasets quickly while producing explainable results that are easy to understand.</p>
             <div class="card-grid">
-              <article class="card"><h3>Fast to Train</h3><p>It is efficient for moderate to large datasets.</p></article>
+              <article class="card"><h3>Fast to Train</h3><p>It is efficient for large and medium-sized datasets.</p></article>
               <article class="card"><h3>Easy to Understand</h3><p>The centroid-based interpretation is intuitive for beginners.</p></article>
-              <article class="card"><h3>Good Baseline</h3><p>It often serves as a starting point before trying more complex methods.</p></article>
+              <article class="card"><h3>Good Baseline</h3><p>It often serves as a starting point before trying more advanced methods.</p></article>
             </div>
-            <div class="note-box"><strong>Note</strong><span>It is often a strong baseline, but not always the best final choice.</span></div>
+            <div class="note-box"><strong>Note</strong><span>It is often a strong baseline, but not always the best final choice for every dataset.</span></div>
           </section>
 
           <section class="section-block" id="history">
             <div class="section-heading">
               <h2>History</h2>
             </div>
-            <p>K-Means has roots in classical statistical clustering and vector quantization. Over the decades, it became a staple of data mining, pattern recognition, and machine learning because of its simple formulation and practical usefulness.</p>
+            <p>K-Means has roots in classical clustering and vector quantization. Over time, it became a staple of data mining, pattern recognition, and machine learning because of its simple formulation and practical usefulness.</p>
             <div class="card-grid">
               <article class="card"><h3>Early Development</h3><p>It emerged from foundational work in clustering and signal processing.</p></article>
-              <article class="card"><h3>Modern Adoption</h3><p>It became widely used in analytics, AI, and commercial data platforms.</p></article>
+              <article class="card"><h3>Modern Adoption</h3><p>It became widely used in analytics, AI, and business intelligence platforms.</p></article>
               <article class="card"><h3>Legacy</h3><p>Its influence remains strong in modern clustering research and practice.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>The algorithm is old, but it remains relevant because of its simplicity and speed.</span></div>
@@ -149,11 +155,11 @@
             <div class="section-heading">
               <h2>Real World Analogy</h2>
             </div>
-            <p>Imagine organizing books in a library by topic. You first choose a few representative shelves, then place each book near the shelf that best matches its content. The shelf positions are updated as books are assigned.</p>
+            <p>Imagine a teacher wants to divide students into study groups. Instead of manually deciding the groups, the teacher enters the marks into a computer and lets it create groups based on similarity. The groups may be labeled as high performers, average performers, or students who need extra support.</p>
             <div class="card-grid">
               <article class="card"><h3>Library Example</h3><p>Books are grouped around a central theme.</p></article>
               <article class="card"><h3>Marketing Example</h3><p>Customers are grouped by similar preferences and behavior.</p></article>
-              <article class="card"><h3>Analogy Summary</h3><p>The algorithm repeatedly reassigns items and updates group centers.</p></article>
+              <article class="card"><h3>Analogy Summary</h3><p>The algorithm repeatedly reassigns items and updates group centers until the groups become stable.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>This analogy helps explain why K-Means creates compact groups around representative centers.</span></div>
           </section>
@@ -166,6 +172,9 @@
               <article class="card"><h3>Data Point</h3><p>An individual observation or sample in the dataset.</p></article>
               <article class="card"><h3>Feature</h3><p>A measurable characteristic used to describe the data point.</p></article>
               <article class="card"><h3>Cluster</h3><p>A collection of similar data points grouped together.</p></article>
+              <article class="card"><h3>Centroid</h3><p>The center point of a cluster, usually the mean of the assigned points.</p></article>
+              <article class="card"><h3>Distance</h3><p>A measure of similarity or dissimilarity between data points.</p></article>
+              <article class="card"><h3>Inertia</h3><p>A metric that shows how close points are to their cluster center.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>Understanding these core terms makes the algorithm easier to reason about.</span></div>
           </section>
@@ -200,7 +209,7 @@
             <div class="section-heading">
               <h2>Distance Metric</h2>
             </div>
-            <p>The distance metric defines how similarity between data points is measured. K-Means commonly uses Euclidean distance, though other metrics can be adapted in variations of the algorithm.</p>
+            <p>The distance metric defines how similarity between data points is measured. K-Means commonly uses Euclidean distance, which is the straight-line distance between points in feature space.</p>
             <div class="card-grid">
               <article class="card"><h3>Euclidean Distance</h3><p>The default choice for many numeric clustering problems.</p></article>
               <article class="card"><h3>Effect on Results</h3><p>Different distance measures can significantly change the clustering output.</p></article>
@@ -230,10 +239,10 @@
             <div class="section-heading">
               <h2>Objective Function</h2>
             </div>
-            <p>The objective function captures the clustering quality in a single numeric expression. The algorithm aims to make the sum of squared distances as small as possible.</p>
+            <p>The objective function captures clustering quality in a single numeric value. The algorithm aims to make the total squared distance as small as possible while keeping the cluster assignments meaningful.</p>
             <div class="card-grid">
               <article class="card"><h3>Compactness</h3><p>Smaller values suggest clusters with tighter groupings.</p></article>
-              <article class="card"><h3>Tradeoff</h3><p>More clusters can reduce the objective but may lead to overfitting-like behavior.</p></article>
+              <article class="card"><h3>Tradeoff</h3><p>More clusters can reduce the objective but may create unnecessary divisions.</p></article>
               <article class="card"><h3>Practical Meaning</h3><p>It helps compare different clustering outcomes for the same dataset.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>The objective function is not the only criterion to use; interpretability and stability matter too.</span></div>
@@ -266,7 +275,7 @@
             </div>
             <div class="card-grid">
               <article class="card"><h3>Convergence</h3><p>The process stops when assignments do not change or the movement of centroids becomes very small.</p></article>
-              <article class="card"><h3>Local Optimum</h3><p>The result may depend on the initial centroids.</p></article>
+              <article class="card"><h3>Local Optimum</h3><p>The result may depend on how the centroids were initialized.</p></article>
               <article class="card"><h3>Practical Insight</h3><p>Running the algorithm multiple times with different initializations can improve the outcome.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>Different initializations can lead to different solutions, so initialization matters.</span></div>
@@ -308,11 +317,11 @@ Cluster Labels + Centroids</code></pre>
             <div class="section-heading">
               <h2>Working Example</h2>
             </div>
-            <p>Suppose a small dataset contains points that naturally form two groups. K-Means begins with initial cluster centers and repeatedly moves them until the points are grouped into two compact areas.</p>
+            <p>Suppose a company has customer data with features such as age, annual income, and spending score. K-Means can group them into clusters like high-income, high-spending customers or low-income, moderate-spending customers.</p>
             <div class="card-grid">
-              <article class="card"><h3>Example Setup</h3><p>Two clusters are chosen to represent two customer segments.</p></article>
+              <article class="card"><h3>Example Setup</h3><p>Three clusters are chosen to represent three customer groups.</p></article>
               <article class="card"><h3>Iteration Behavior</h3><p>Points are reassigned until each group is centered around a stable mean.</p></article>
-              <article class="card"><h3>Outcome</h3><p>The result is a partition of the data into two clusters.</p></article>
+              <article class="card"><h3>Outcome</h3><p>The result is a partition of the data into meaningful clusters.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>A worked example helps make the assignment-update loop concrete and memorable.</span></div>
           </section>
@@ -334,7 +343,7 @@ Cluster Labels + Centroids</code></pre>
             <div class="section-heading">
               <h2>Elbow Method</h2>
             </div>
-            <p>The elbow method compares the within-cluster variance across different values of $k$ and looks for the point where the gain begins to level off.</p>
+            <p>The elbow method compares the within-cluster variance across different values of $k$ and looks for the point where the gain begins to level off. The selected value is often the point where the curve bends, creating an elbow shape.</p>
             <div class="card-grid">
               <article class="card"><h3>How It Works</h3><p>Plot the inertia or distortion against the number of clusters.</p></article>
               <article class="card"><h3>Interpretation</h3><p>An elbow suggests a reasonable tradeoff between model complexity and fit.</p></article>
@@ -347,7 +356,7 @@ Cluster Labels + Centroids</code></pre>
             <div class="section-heading">
               <h2>Silhouette Score</h2>
             </div>
-            <p>The silhouette score evaluates whether points are well matched to their own cluster and poorly matched to neighboring clusters.</p>
+            <p>The silhouette score evaluates whether points are well matched to their own cluster and poorly matched to neighboring clusters. Higher values generally indicate better cluster separation.</p>
             <div class="card-grid">
               <article class="card"><h3>Range</h3><p>Values closer to 1 indicate strong clustering.</p></article>
               <article class="card"><h3>Usefulness</h3><p>It helps compare different values of $k$.</p></article>
@@ -360,11 +369,11 @@ Cluster Labels + Centroids</code></pre>
             <div class="section-heading">
               <h2>Preprocessing</h2>
             </div>
-            <p>Preprocessing prepares the data before clustering so that the algorithm can operate on meaningful and comparable values.</p>
+            <p>Before applying K-Means, it is important to preprocess the data so that the clustering result is meaningful and stable. This includes handling missing values, scaling features, encoding categorical variables, and removing outliers where necessary.</p>
             <div class="card-grid">
-              <article class="card"><h3>Cleaning</h3><p>Remove or repair missing or invalid values.</p></article>
-              <article class="card"><h3>Encoding</h3><p>Convert categorical values into a suitable format.</p></article>
-              <article class="card"><h3>Outlier Handling</h3><p>Reduce the influence of extreme values where appropriate.</p></article>
+              <article class="card"><h3>Handling Missing Values</h3><p>Remove rows, impute the mean or median, or use the mode for categorical data.</p></article>
+              <article class="card"><h3>Encoding Categorical Variables</h3><p>Use label encoding or one-hot encoding so the algorithm can work with numeric values.</p></article>
+              <article class="card"><h3>Outlier Handling</h3><p>Reduce the influence of extreme values using methods such as IQR or z-score.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>Insightful clustering depends on how well the data is prepared before the algorithm starts.</span></div>
           </section>
@@ -386,7 +395,7 @@ Cluster Labels + Centroids</code></pre>
             <div class="section-heading">
               <h2>Hyperparameters</h2>
             </div>
-            <p>K-Means contains a few important hyperparameters that influence its behavior and performance. The most common is the number of clusters, but initialization choices also matter.</p>
+            <p>K-Means contains a few important hyperparameters that influence its behavior and performance. The most common ones are the number of clusters, initialization method, number of restarts, and maximum number of iterations.</p>
             <div class="card-grid">
               <article class="card"><h3>Number of Clusters</h3><p>Controls how many groups the algorithm will form.</p></article>
               <article class="card"><h3>Initialization</h3><p>Determines the starting centroids and may affect the final result.</p></article>
@@ -403,6 +412,7 @@ Cluster Labels + Centroids</code></pre>
             <div class="card-grid">
               <article class="card"><h3>Inertia</h3><p>Measures within-cluster compactness.</p></article>
               <article class="card"><h3>Silhouette</h3><p>Measures cluster separation and cohesion.</p></article>
+              <article class="card"><h3>Davies-Bouldin</h3><p>Evaluates the average similarity between clusters.</p></article>
               <article class="card"><h3>Calinski-Harabasz</h3><p>Evaluates the ratio of between-cluster to within-cluster variance.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>Model evaluation should be based on both metrics and domain understanding.</span></div>
@@ -416,6 +426,7 @@ Cluster Labels + Centroids</code></pre>
               <article class="card"><h3>Simple</h3><p>Easy to understand and implement.</p></article>
               <article class="card"><h3>Efficient</h3><p>Works quickly on many practical datasets.</p></article>
               <article class="card"><h3>Scalable</h3><p>Suitable for large datasets when the assumptions are reasonable.</p></article>
+              <article class="card"><h3>Produces Compact Groups</h3><p>It often creates tight, interpretable clusters for numerical data.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>Its strengths make it a highly useful baseline algorithm.</span></div>
           </section>
@@ -428,6 +439,7 @@ Cluster Labels + Centroids</code></pre>
               <article class="card"><h3>Assumes Spherical Clusters</h3><p>It struggles when clusters are elongated or irregularly shaped.</p></article>
               <article class="card"><h3>Sensitive to Initialization</h3><p>Different starts can produce different solutions.</p></article>
               <article class="card"><h3>Requires k</h3><p>The number of clusters must be specified ahead of time.</p></article>
+              <article class="card"><h3>Sensitive to Outliers</h3><p>Extreme values can shift centroids and distort the result.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>K-Means is not ideal for every dataset, especially when the cluster shapes are complex.</span></div>
           </section>
@@ -439,7 +451,10 @@ Cluster Labels + Centroids</code></pre>
             <p>K-Means is used in a wide variety of domains where the goal is to partition data into meaningful groups.</p>
             <div class="card-grid">
               <article class="card"><h3>Customer Segmentation</h3><p>Find behavioral groups for marketing and personalization.</p></article>
+              <article class="card"><h3>Recommendation Systems</h3><p>Group users with similar preferences to improve suggestions.</p></article>
               <article class="card"><h3>Image Compression</h3><p>Reduce colors or visual complexity through representative centroids.</p></article>
+              <article class="card"><h3>Healthcare</h3><p>Group patients by similar symptoms or medical history.</p></article>
+              <article class="card"><h3>Fraud Detection</h3><p>Highlight unusual transaction patterns by separating normal behavior from anomalies.</p></article>
               <article class="card"><h3>Document Clustering</h3><p>Organize text documents into topic-related groups.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>It is often used as a first step before applying more specialized analytics methods.</span></div>
@@ -461,7 +476,7 @@ Cluster Labels + Centroids</code></pre>
             <div class="section-heading">
               <h2>Case Study</h2>
             </div>
-            <p>A retail company may apply K-Means to customer purchase data to identify groups such as frequent spenders, occasional buyers, and bargain seekers. These clusters can guide targeted promotions and product recommendations.</p>
+            <p>An e-commerce company may apply K-Means to customer purchase data to identify groups such as high-income, high-spending customers or low-income, bargain-seeking customers. These clusters can guide targeted promotions and product recommendations.</p>
             <div class="card-grid">
               <article class="card"><h3>Problem</h3><p>Understand customer behavior without previous labels.</p></article>
               <article class="card"><h3>Approach</h3><p>Cluster using purchase frequency, basket size, and average order value.</p></article>
@@ -495,6 +510,7 @@ labels = model.fit_predict(X_scaled)</code></pre>
               <article class="card"><h3>Ignoring Scaling</h3><p>Large-scale features can dominate the clustering result.</p></article>
               <article class="card"><h3>Choosing k Arbitrarily</h3><p>Randomly picking the number of clusters can be misleading.</p></article>
               <article class="card"><h3>Overlooking Outliers</h3><p>Outliers can distort centroid locations.</p></article>
+              <article class="card"><h3>Using the Wrong Data Type</h3><p>K-Means works best with numerical data, so categorical features require preprocessing.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>Awareness of these mistakes leads to more reliable clustering outcomes.</span></div>
           </section>
@@ -507,6 +523,7 @@ labels = model.fit_predict(X_scaled)</code></pre>
               <article class="card"><h3>Scale Features</h3><p>Use standardized numeric values before clustering.</p></article>
               <article class="card"><h3>Try Multiple Initializations</h3><p>Use several random starts to improve stability.</p></article>
               <article class="card"><h3>Evaluate Carefully</h3><p>Compare clusters using both metrics and domain context.</p></article>
+              <article class="card"><h3>Keep the Goal in Mind</h3><p>Choose the number of clusters based on the problem you want to solve.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>Best practices help transform a simple algorithm into a reliable analytical tool.</span></div>
           </section>
@@ -516,9 +533,10 @@ labels = model.fit_predict(X_scaled)</code></pre>
               <h2>Interview Questions</h2>
             </div>
             <div class="card-grid">
-              <article class="card"><h3>Question 1</h3><p>What is the difference between K-Means and hierarchical clustering?</p></article>
-              <article class="card"><h3>Question 2</h3><p>How does K-Means handle the choice of k?</p></article>
-              <article class="card"><h3>Question 3</h3><p>Why is scaling important for K-Means?</p></article>
+              <article class="card"><h3>Question 1</h3><p>What does the $k$ in K-Means represent?</p></article>
+              <article class="card"><h3>Question 2</h3><p>How is the centroid updated in each iteration?</p></article>
+              <article class="card"><h3>Question 3</h3><p>Why is feature scaling important for K-Means?</p></article>
+              <article class="card"><h3>Question 4</h3><p>Why is K-Means considered unsupervised learning?</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>These questions are useful for technical interviews and practical discussions.</span></div>
           </section>
@@ -531,6 +549,7 @@ labels = model.fit_predict(X_scaled)</code></pre>
               <article class="card"><h3>Is K-Means supervised?</h3><p>No. It is an unsupervised learning method.</p></article>
               <article class="card"><h3>Can K-Means handle non-spherical clusters?</h3><p>It is less effective for complex shapes than some other algorithms.</p></article>
               <article class="card"><h3>How many clusters should I choose?</h3><p>Use domain knowledge and evaluation metrics to guide the decision.</p></article>
+              <article class="card"><h3>What happens if the data contains outliers?</h3><p>Outliers can distort the centroids and weaken the clustering result.</p></article>
             </div>
             <div class="note-box"><strong>Note</strong><span>FAQs help readers quickly resolve common doubts before moving deeper into the topic.</span></div>
           </section>
@@ -559,8 +578,9 @@ labels = model.fit_predict(X_scaled)</code></pre>
                 </thead>
                 <tbody>
                   <tr><td>Scikit-learn K-Means Documentation</td><td>Reference</td><td>Official API and explanation</td></tr>
-                  <tr><td>Microsoft Learn ML Modules</td><td>Educational</td><td>Introductory concepts and examples</td></tr>
-                  <tr><td>TensorFlow Machine Learning Guides</td><td>Educational</td><td>Practical understanding of clustering workflows</td></tr>
+                  <tr><td>Introduction to Statistical Learning</td><td>Book</td><td>Foundational concepts in clustering</td></tr>
+                  <tr><td>Hands-On Machine Learning with Scikit-Learn, Keras & TensorFlow</td><td>Book</td><td>Practical understanding of clustering workflows</td></tr>
+                  <tr><td>Stuart Lloyd (1982), Least Squares Quantization in PCM</td><td>Research Paper</td><td>Original formulation of the method</td></tr>
                 </tbody>
               </table>
             </div>

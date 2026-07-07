@@ -71,21 +71,21 @@
       <div class="content-grid">
         <div>
           <h3>What is it?</h3>
-          <p>K-Means is a way to divide data into groups based on how close the points are to one another. The algorithm finds cluster centers and assigns each example to the nearest center.</p>
+          <p>K-Means is an unsupervised learning algorithm that groups similar data points into K clusters using centroids. It discovers hidden patterns in unlabeled data by assigning each point to the nearest cluster center.</p>
         </div>
         <div>
           <h3>Why is it needed?</h3>
-          <p>It helps organize data quickly when labels are not available. By grouping similar items together, K-Means turns raw data into useful categories for analysis.</p>
+          <p>It helps organize data quickly when labels are not available. Businesses use it to find natural groups for segmentation, recommendation, and analysis.</p>
         </div>
       </div>
-      <p class="lead">For a first-year student, K-Means is a gentle introduction to grouping data by similarity, without relying on predefined answers.</p>
+      <p class="lead">For a first-year student, K-Means is a clear introduction to grouping data by similarity without relying on predefined answers.</p>
     </section>
 
     <section class="section content-block" id="analogy">
       <div class="section-header">
         <h2>Real World Analogy</h2>
       </div>
-      <p>Imagine sorting stickers into boxes. You do not know the exact categories at first, so you place each sticker into the box where it seems to belong best. Over time, you may move some stickers until each box contains stickers that look or feel similar.</p>
+      <p>Imagine a teacher wants to divide students into study groups. Instead of manually deciding the groups, the teacher enters their marks into a computer and lets it form groups based on similarity, such as high performers, average performers, and students who need extra support.</p>
     </section>
 
     <section class="section content-block" id="problem">
@@ -96,7 +96,7 @@
       <ul class="problem-list">
         <li>Discovering groups in customer data</li>
         <li>Reducing complexity of large datasets</li>
-        <li>Creating fast clusters for visualization</li>
+        <li>Creating fast clusters for visualization and business analysis</li>
       </ul>
     </section>
 
@@ -105,7 +105,7 @@
         <h2>Mathematical Formula</h2>
       </div>
       <div class="formula-card">
-        <p><strong>Objective:</strong> minimize the total distance between points and their cluster centers.</p>
+        <p><strong>Objective:</strong> minimize the total squared distance between points and their cluster centers.</p>
         <p class="formula"><code>J = &sum;<sub>i=1</sub><sup>k</sup> &sum;<sub>x &#x2208; S<sub>i</sub></sub> || x - μ<sub>i</sub> ||<sup>2</sup></code></p>
         <div class="formula-legend">
           <div><strong>k</strong> = number of clusters</div>
@@ -122,10 +122,10 @@
       </div>
       <ol class="workflow-list">
         <li>Select the number of clusters <strong>k</strong>.</li>
-        <li>Place k initial centroids randomly or by a simple rule.</li>
+        <li>Initialize k centroids randomly or with a simple selection rule.</li>
         <li>Assign each point to the nearest centroid.</li>
         <li>Update each centroid to the mean of its assigned points.</li>
-        <li>Repeat assignment and update until centroids stop changing.</li>
+        <li>Repeat the assignment and update steps until the centroids stop changing significantly.</li>
         <li>Return the final groups and their centroids.</li>
       </ol>
     </section>
@@ -177,20 +177,20 @@
       <div class="example-grid">
         <div class="example-card">
           <h3>Dataset</h3>
-          <p>Suppose we have customers with two measurements: monthly spending and number of visits. We want to group them without using labels.</p>
+          <p>Suppose a company has customer data with features such as age, annual income, and spending score. K-Means can group them into clusters such as high-income, high-spending customers or low-income, moderate-spending customers.</p>
         </div>
         <div class="example-card">
           <h3>Step by Step</h3>
           <ol>
-            <li>Pick k = 3 clusters.</li>
+            <li>Choose k = 3 clusters.</li>
             <li>Place three centroids on the plot.</li>
             <li>Assign each customer to the closest centroid.</li>
-            <li>Move centroids to the average of assigned customers.</li>
-            <li>Repeat until the groups stop changing.</li>
+            <li>Move the centroids to the average position of the assigned customers.</li>
+            <li>Repeat until the groups become stable.</li>
           </ol>
         </div>
       </div>
-      <p class="lead">In this example, K-Means helps separate customers into three groups based on similar behavior. The final groups can guide business decisions such as loyalty offers or product recommendations.</p>
+      <p class="lead">In this example, K-Means helps separate customers into meaningful groups based on similar behavior, which can support targeted marketing and recommendation strategies.</p>
     </section>
 
     <section class="section cards-grid" id="advantages">
@@ -200,15 +200,15 @@
       <div class="card-list">
         <article class="feature-card">
           <h3>Fast execution</h3>
-          <p>K-Means is efficient on medium-sized datasets and can cluster data quickly.</p>
+          <p>K-Means is efficient on medium-sized and large datasets.</p>
         </article>
         <article class="feature-card">
           <h3>Easy to implement</h3>
-          <p>The rules are simple: choose k, assign points, update centroids.</p>
+          <p>The process is simple: choose k, assign points, update centroids, and repeat.</p>
         </article>
         <article class="feature-card">
           <h3>Clear results</h3>
-          <p>The output is a set of groups and centroids that are easy to interpret.</p>
+          <p>The output consists of compact groups and centroids that are easy to interpret.</p>
         </article>
       </div>
     </section>
@@ -224,11 +224,11 @@
         </article>
         <article class="feature-card feature-card-soft">
           <h3>Works best with round clusters</h3>
-          <p>K-Means assumes groups are spherical and similar in size.</p>
+          <p>K-Means assumes clusters are compact and roughly spherical.</p>
         </article>
         <article class="feature-card feature-card-soft">
           <h3>Sensitive to initialization</h3>
-          <p>Bad starting points can lead to poor grouping results.</p>
+          <p>Poor starting points can lead to weak grouping results.</p>
         </article>
       </div>
     </section>
@@ -240,7 +240,7 @@
       <div class="apps-grid">
         <article>
           <h3>Healthcare</h3>
-          <p>Grouping patient patterns for basic risk screening based on symptoms or lab results.</p>
+          <p>Grouping patient patterns to support diagnosis and treatment planning.</p>
         </article>
         <article>
           <h3>Finance</h3>
@@ -252,7 +252,7 @@
         </article>
         <article>
           <h3>Recommendation</h3>
-          <p>Creating simple audience buckets to suggest products or services.</p>
+          <p>Creating audience groups to suggest products or services.</p>
         </article>
         <article>
           <h3>Image Processing</h3>
@@ -292,10 +292,10 @@
         <div class="panel"><p>Because it learns groups from unlabeled data rather than using known output values.</p></div>
 
         <button class="accordion-item" aria-expanded="false">What happens if clusters overlap?</button>
-        <div class="panel"><p>The algorithm still assigns points to the nearest centroid, but boundaries may be less accurate.</p></div>
+        <div class="panel"><p>The algorithm still assigns points to the nearest centroid, but the cluster boundaries may be less accurate.</p></div>
 
         <button class="accordion-item" aria-expanded="false">When should we not use K-Means?</button>
-        <div class="panel"><p>When the data has non-spherical groups, strong outliers, or unknown number of clusters.</p></div>
+        <div class="panel"><p>When the data has non-spherical groups, strong outliers, or an unclear number of clusters.</p></div>
       </div>
     </section>
 
@@ -306,8 +306,8 @@
       <ul class="summary-list">
         <li>K-Means groups data by computing cluster centers and assigning points to the nearest center.</li>
         <li>It is best for simple, well-separated clusters and is fast to run.</li>
-        <li>Choosing the right number of clusters and starting points is important.</li>
-        <li>Useful for exploration, segmentation, and reducing data complexity.</li>
+        <li>Choosing the right number of clusters and initialization is important.</li>
+        <li>It is useful for exploration, segmentation, and reducing data complexity.</li>
       </ul>
     </section>
 
@@ -318,7 +318,7 @@
       <ul class="reference-list">
         <li>J. MacQueen, "Some Methods for Classification and Analysis of Multivariate Observations", 1967.</li>
         <li>Scikit-learn user guide for clustering.</li>
-        <li>Introductory notes on unsupervised clustering and centroids.</li>
+        <li>Introduction to Statistical Learning and other beginner-friendly clustering resources.</li>
       </ul>
     </section>
   </main>
